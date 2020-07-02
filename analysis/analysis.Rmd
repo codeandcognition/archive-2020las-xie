@@ -1,0 +1,1196 @@
+---
+title: "Preliminary Analysis of Codeitz Data"
+output: html_notebook
+---
+
+# Analysis for 2020 L@S Paper
+
+Archive found on GitHub: https://github.com/codeandcognition/archive-2020las-xie
+
+Citation:
+Xie, Benjamin, Greg L. Nelson, Harshitha Akkaraju, William Kwok, and Amy J. Ko. “The Effect of Informing Agency in Self-Directed Online Learning Environments.” In Proceedings of the Seventh (2020) ACM Conference on Learning @ Scale. L@S 2020. ACM, 2020.
+
+Much of this code (all code before line 248, some below that) will not work. 
+Analysis below that will run with data_anon.csv as `df_scores`.
+Some analysis will not work because of data removed for anonymity. 
+(e.g. demographic data removed)
+
+In this analysis, C1 is equivalent to UH (informed high agency) in the paper.
+E1 is equivalent to IH (informed high agency). 
+C2 is equivalent to IL (informed low agency).
+
+
+```{r}
+library(rjson) # load json
+library(dplyr) # data cleaning
+library(stringr)
+library(ggplot2)
+library(e1071) # for skewness
+library(ggpubr)
+library(plyr) #revalue, shapiro wilkes
+library(coin) # kruskal_test
+library(entropy)
+library(ARTool) # for aligned rank transform (art, artlm)
+library(emmeans) # post-hoc pairise analysis
+library(car) # levene's test
+library(forcats) #fct_rev
+library(RColorBrewer) # colors
+library(tidyr) # gather() for long tables
+library(lme4) # glmer
+library(lsr) # etaSquared
+library(OneR) # bin
+library(searchable)
+library(MBESS) # effect size conf. interval
+library(effsize)
+
+source("./helper_functions.R")
+source("./dynamical_analysis.R")
+source("./constants.R")
+
+# common language effect size
+source("http://janhove.github.io/RCode/CommonLanguageEffectSizes.R")
+```
+
+# Loading data from sources
+Data from Firebase and Qualtrics:
+* `data_auth`: user data from firebase authentication (uid, email, name)
+* `data_log` : log data on user activity (from fb db)
+* `data_post`: post-survey data (from Qualtrics)
+* `data_pre`: pre-survey data (from Qualtrics)
+```{r}
+auth_col_names <- as.vector(read.csv(PATH_AUTH_COL_NAMES, stringsAsFactors = F)[,1])
+data_auth <- read.csv(PATH_AUTH, 
+                      header = FALSE, # no header column
+                      row.names = NULL, # force row numbering
+                      stringsAsFactors = FALSE) # dataframe
+
+data_log <- fromJSON(file = PATH_LOG) # very large JSON object
+data_post <- read.csv(PATH_POST_SURVEY, stringsAsFactors = FALSE) # dataframe
+data_email_match <- read.csv(PATH_EMAIL_MATCH, stringsAsFactors = FALSE)
+data_pre <- read.csv(PATH_PRE_SURVEY, stringsAsFactors = FALSE)
+data_grades <-read.csv(PATH_GRADES, stringsAsFactors = FALSE)
+data_concept_exercise <- fromJSON(file = PATH_CONCEPT_EX_MAP)
+data_omit <- read.csv(PATH_OMIT, stringsAsFactors = FALSE)
+
+df_concept_ex_map <- populate_concept_ex()
+feature_map <- read.csv(PATH_FEATURE_MAP, stringsAsFactors = FALSE)
+```
+
+# Data cleaning
+```{r}
+# add col names to data_auth
+data_auth <- data_auth[,1:length(auth_col_names)] # sometimes extra empty columns added in
+colnames(data_auth) <- auth_col_names
+
+# lowercase emails (might have already been done, idk)
+data_auth <- data_auth %>% mutate(email = tolower(email_raw))
+
+# readable datetimes
+data_auth <- data_auth %>% 
+  mutate(created_at = as.character(
+    as.POSIXct(time_created/1000, origin="1970-01-01", tz="GMT"))
+    )
+data_auth <- data_auth %>% 
+  mutate(last_sign_in = as.character(
+    as.POSIXct(time_last_sign_in/1000, origin="1970-01-01", tz="GMT"))
+    )
+
+# drop first 2 rows (metadata)
+data_post <- data_post[3:nrow(data_post),]
+data_post <- data_post %>% mutate(email = tolower(Q29))
+
+data_pre <- data_pre[3:nrow(data_pre),]
+data_pre <- data_pre %>% mutate(email = tolower(Q8))
+data_pre <- data_pre %>% mutate(reason = Q7, reason_other = Q9)
+
+# swap 1 email... manual fix #hardcode
+data_pre[data_pre$email == data_email_match$codeitz_email[1],"email"] <- data_email_match$post_survey_email[1]
+for(i in 1:nrow(data_email_match)) {
+  pre_email <- data_email_match[i, "pre_survey_email"]
+  if(str_length(pre_email)>0){
+    # replace pre-survey email with email used in Codeitz
+    data_pre[data_pre$email == pre_email, "email"] <- 
+      data_email_match[i, "codeitz_email"]
+  }
+}
+
+# add mean self-efficacy
+data_pre$se_pre = get_avg_se(data = data_pre, question_header = "Q1")
+data_post$se_post = get_avg_se(data = data_post, question_header = "Q3_")
+data_post$num_prior_courses <- as.numeric(data_post$Q65)
+data_post$has_prior_knowledge <- ifelse(data_post$num_prior_courses > 0, 
+                                        TRUE, FALSE)
+data_post$degree_in_progress <- tolower(data_post$Q71)
+data_post$university_current <- tolower(data_post$Q72)
+data_post$degree <- tolower(data_post$Q74)
+data_post$desc_decision <- data_post$Q1
+data_post$dec_decision_other <- data_post$Q16
+data_post$desc_rec <- data_post$Q6
+data_post$desc_frustrated <- data_post$Q7
+data_post$desc_helpful <- data_post$Q8
+
+# columns for importance of Codeitz features
+for(i in 1:nrow(feature_map)) {
+  cname <- feature_map$colname[i]
+  new_cname <- feature_map$informative_colname[i]
+  data_post[,new_cname] <- data_post[,cname]
+  
+  # empty string to NA
+  data_post[data_post[,new_cname] == "", new_cname] <- NA
+  
+  # order factor
+  data_post[,new_cname] <- as.factor(data_post[,new_cname])
+  
+  n_options <- length(levels(data_post[,new_cname]))
+  if(n_options == 6) { # includes "Not applicable" option
+    data_post[,new_cname] <- factor(data_post[,new_cname],
+                                    levels(data_post[,new_cname])[c(3,4,5,2,6,1)])
+  } else if (n_options == 5) {
+     data_post[,new_cname] <- factor(data_post[,new_cname],
+                                    levels(data_post[,new_cname])[c(3,4,2,5,1)])
+  }
+}
+
+# add mindset
+data_pre$mindset_pre <- as.factor(get_mindset(data = data_pre, 
+                                    questions = c("Q2", "Q3", "Q4")))
+data_post$mindset_post <- as.factor(get_mindset(data = data_post,
+                                     questions = c("Q12", "Q13", "Q14")))
+
+# summing all score cols for total score for grades
+data_grades$test_score <- rowSums(data_grades[colnames(data_grades)[
+  grepl("score", colnames(data_grades))]])
+
+# rename some cols
+colnames(data_post)[colnames(data_post)=="Q20"] <- "ethnicity"
+colnames(data_grades)[grepl("What.is.your.email.address",
+                            colnames(data_grades))] <- "email"
+```
+Add grades to data_post
+```{r}
+df_grades <- data_grades %>% 
+  dplyr::select(email, test_score) %>% 
+  filter (!is.na(test_score)) %>% 
+  mutate(email = tolower(email))
+
+# add test_score column
+if(!"test_score" %in% colnames(data_post)){
+  data_post <- left_join(data_post, df_grades, by="email") # TODO: check for email mismatches
+}
+```
+
+
+# Data on finished participants
+```{r}
+# mapping of emails (from post survey) to uid
+df <- data_post %>% 
+  dplyr::filter(grepl("@", email, fixed = TRUE)) %>%  # check for "@"
+  dplyr::select(email, EndDate,
+                importance_check, importance_bars, importance_recommend, importance_world, importance_feedback,
+                desc_decision, desc_rec, desc_helpful, desc_frustrated, dec_decision_other,
+                se_post, mindset_post, gender, ethnicity, 
+                num_prior_courses, has_prior_knowledge, 
+                degree_in_progress, university_current, degree,
+                test_score)
+
+df$uid <- sapply(df$email, get_uid)
+df <- df %>% filter(!is.na(uid)) # remove all without UID
+df <- df %>% dplyr::filter(!(uid %in% data_omit$uid)) # remove users which had to omit
+
+# getting user info from log data (using uid)
+df$condition <- sapply(df$uid, get_condition)
+
+# getting user info from auth (using uid)
+df$name <- sapply(df$uid, get_from_auth, prop = "name")
+# df$created_at <- sapply(df$uid, get_from_auth, prop = "created_at")
+# df$last_sign_in <- sapply(df$uid, get_from_auth, prop = "last_sign_in")
+
+# errors b/c UID that are NA not handled (usually indicates missing data)
+df$se_post_label <- get_self_efficacy_label(df$se_post)
+
+# changing to factor & ordering factor from low to high
+df$se_post_label <- as.factor(df$se_post_label)
+df$se_post_label <- factor(df$se_post_label, levels(df$se_post_label)[c(2,3,1)])
+
+# adding se_pre. issue is there are duplicates. only grabbing 1st but may not be right call there
+
+# filter for rows that have se_pre and then remove duplicates by email
+data_pre_se <- distinct(data_pre %>% filter(!is.na(se_pre)) %>% dplyr::select(email, se_pre), email, .keep_all = TRUE)
+
+# Manual fixto make join work b/c 1 user used different email between pre and post survey... I'm sorry
+data_pre_se[data_pre_se$email == data_email_match[4, "pre_survey_email"], "email"] <-
+  data_email_match[4, "post_survey_email"]
+
+df <- dplyr::left_join(df, data_pre_se, by = "email")
+
+df$se_pre_label <- get_self_efficacy_label(df$se_pre)
+df$se_pre_label <- as.factor(df$se_pre_label)
+df$se_pre_label <- factor(df$se_pre_label, levels(df$se_pre_label)[c(2,3,1)]) # order factor
+
+df$se_delta <- df$se_post - df$se_pre
+df$se_delta_label <- get_self_efficacy_label(df$se_delta)
+df$se_delta_label <- as.factor(df$se_delta_label)
+df$se_delta_label <- factor(df$se_delta_label, levels(df$se_delta_label)[c(2,3,1)])
+
+df$condition <- as.factor(df$condition)
+```
+
+Calculating log data and entropy(takes awhile)
+```{r}
+df$num_ex_correct <- sapply(df$uid, function(uid){length(get_exercises_completed(uid))})
+df$num_ex_attempted <- sapply(df$uid, function(uid){length(get_exercises_completed(uid, only_correct = F))})
+df$num_ex_submits <- sapply(df$uid, function(uid){nrow(get_exercise_attempts(uid))})
+
+# takes awhile
+df$entropy <- sapply(df$uid, get_entropy)
+df$entropy_prop_max <- sapply(df$uid, get_entropy, prop_of_max = TRUE)
+```
+
+Analyzing Grades
+```{r}
+df_scores <- df %>% filter(!is.na(test_score))
+
+N <- nrow(df_scores %>% filter(!is.na(condition)))
+
+# Grouping by top and bottom 1/3
+thres <- quantile(df_scores$test_score, c(1/3, 2/3))
+THRES_LOW <- thres[[names(thres)[1]]]
+THRES_HIGH <- thres[[names(thres)[2]]]
+
+df_scores_c1_low <- df_scores %>% filter(condition == C1, test_score <= THRES_LOW)
+df_scores_c1_high <- df_scores %>% filter(condition == C1, test_score >= THRES_HIGH)
+
+df_scores_e1_low <- df_scores %>% filter(condition == E1, test_score <= THRES_LOW)
+df_scores_e1_high <- df_scores %>% filter(condition == E1, test_score >= THRES_HIGH)
+
+df_scores_c2_low <- df_scores %>% filter(condition == C2, test_score <= THRES_LOW)
+df_scores_c2_high <- df_scores %>% filter(condition == C2, test_score >= THRES_HIGH)
+```
+
+
+```{r}
+df_scores %>% 
+  dplyr::group_by(condition) %>% 
+  dplyr::summarize(
+    freq=n(), 
+    num_low = sum(test_score < THRES_LOW),
+    num_high = sum(test_score > THRES_HIGH),
+    median = median(test_score, na.rm = T),
+    iqr = IQR(test_score),
+    iqr_low = quantile(test_score, 0.25),
+    iqr_high = quantile(test_score, 0.75)
+            )
+```
+
+
+
+Set up bins for test scores sparkmaps
+```{r}
+scores <- get_bins(df_scores$test_score)
+df_scores$bin_test_score <- scores$bins
+df_scores$bin_test_score_num <- scores$bin_nums
+get_sparklines("test_score", "bin_test_score_num")
+
+attempts <- get_bins(df_scores$num_ex_attempted)
+df_scores$bin_num_ex_attempted <- attempts$bins
+df_scores$bin_num_ex_attempted_num <- attempts$bin_nums
+get_sparklines("num_ex_attempted", "bin_num_ex_attempted_num")
+
+completes <- get_bins(df_scores$num_ex_correct)
+df_scores$bin_num_ex_correct <- completes$bins
+df_scores$bin_num_ex_correct_num <- completes$bin_nums
+get_sparklines("num_ex_correct", "bin_num_ex_correct_num")
+
+# 
+# # bin for sparkmap
+# bins_test_score <- bin(df_scores$test_score, nbins = N_BINS, method = "length") # uniform size
+# df_scores$bin_test_score <- bins_test_score
+# 
+# # map str of bin range to bin number
+# bin_map_scores <- setNames(c(1:length(levels(bins_test_score))), levels(bins_test_score)) 
+# df_scores$bin_test_score_num <- revalue(bins_test_score, bin_map_scores)
+
+```
+
+# Bin for test scores
+```{r}
+# most max value in any bin (highest peak)
+# MAX_BIN_VAL <- 7
+# 
+# data_inp <- df_scores
+# 
+# data_scores <- data_inp %>% dplyr::select(test_score) %>% pull(1)
+# 
+# print("IH / E1")
+# bins_scores_e1 <- xtabs(~bin_test_score_num, data = data_inp %>% dplyr::filter(condition == E1)) / MAX_BIN_VAL
+# get_sparkline(bins_scores_e1, data_scores, "IH test score")
+# 
+# 
+# summary(data_inp %>% dplyr::filter(condition == E1) %>% dplyr::select(test_score))
+# 
+# 
+# print("IL / C2")
+# bins_scores_c2 <- xtabs(~bin_test_score_num, data = data_inp %>% dplyr::filter(condition == C2)) / MAX_BIN_VAL
+# get_sparkline(bins_scores_c2, data_scores, "IL test score")
+# 
+# summary(data_inp %>% dplyr::filter(condition == C2) %>% dplyr::select(test_score))
+# 
+# 
+# print("UH / C1")
+# bins_scores_c1 <- xtabs(~bin_test_score_num, data = data_inp %>% dplyr::filter(condition == C1)) / MAX_BIN_VAL
+# get_sparkline(bins_scores_c1, data_scores, "UH test score")
+# 
+# summary(data_inp %>% dplyr::filter(condition == C1) %>% dplyr::select(test_score))
+
+# data_inp %>% 
+#   dplyr::select(condition, test_score) %>%
+#   dplyr::group_by(condition) %>% 
+#   dplyr::summarize(median = median(test_score),
+#                    iqr = IQR(test_score),
+#                    iqr_low = quantile(test_score, 0.25),
+#                    iqr_high = quantile(test_score, 0.75)
+#                    )
+```
+Sparkline for num ex attempted
+```{r}
+MAX_BIN_VAL <- 19
+
+data_inp <- df_scores # %>% filter(test_score >= THRES_HIGH)
+  
+print("UH")
+xtabs(~bin_num_ex_attempted_num, data = data_inp %>% dplyr::filter(condition == C1)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == C1) %>% dplyr::select(num_ex_attempted))
+
+print("IH")
+xtabs(~bin_num_ex_attempted_num, data = data_inp %>% dplyr::filter(condition == E1)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == E1) %>% dplyr::select(num_ex_attempted))
+
+print("IL")
+xtabs(~bin_num_ex_attempted_num, data = data_inp %>% dplyr::filter(condition == C2)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == C2) %>% dplyr::select(num_ex_attempted))
+```
+Sparkline for num ex submit
+```{r}
+MAX_BIN_VAL <- 18
+  
+print("UH")
+xtabs(~bin_num_ex_correct_num, data = df_scores %>% dplyr::filter(condition == C1)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == C1) %>% dplyr::select(num_ex_correct))
+
+print("IH")
+xtabs(~bin_num_ex_correct_num, data = df_scores %>% dplyr::filter(condition == E1)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == E1) %>% dplyr::select(num_ex_correct))
+
+print("IL")
+xtabs(~bin_num_ex_correct_num, data = df_scores %>% dplyr::filter(condition == C2)) / MAX_BIN_VAL
+summary(data_inp %>% dplyr::filter(condition == C2) %>% dplyr::select(num_ex_correct))
+```
+
+
+# Looking at demographics
+```{r}
+xtabs(~ethnicity, data=df_scores)
+xtabs(~ethnicity, data=df_scores) / N
+
+xtabs(~gender, data=df_scores)
+xtabs(~gender, data=df_scores) / N
+
+degrees <- xtabs(~degree, data = df_scores)
+write.csv(degrees, file = "./data/degrees.csv")
+```
+
+## Test Scores: Checking normality
+Not normal
+```{r}
+hist(df_scores[df_scores$condition == "C1",]$test_score) # histogram
+hist(df_scores[df_scores$condition == "C2",]$test_score)
+hist(df_scores[df_scores$condition == "E1",]$test_score)
+plot(test_score ~ condition, data=df) # boxplot
+
+# Checking normality
+shapiro.test(df_scores[df_scores$condition == "C1",]$test_score)
+shapiro.test(df_scores[df_scores$condition == "C2",]$test_score) # not normal
+shapiro.test(df_scores[df_scores$condition == "E1",]$test_score)
+
+# checking normality of residuals
+m = aov(test_score ~ condition, data=df_scores) # fit model
+shapiro.test(residuals(m)) # test residuals. p < 0.05 => deviation from normality
+qqnorm(residuals(m)); qqline(residuals(m)) # plot residuals
+```
+
+# looking at scores (and self-efficacy)
+```{r}
+ggdensity(df_scores, x = "test_score",
+   add = "median", rug = TRUE,
+   color = "condition", fill = "condition",
+   palette = c("#999999", "#E69F00", "#56B4E9"), 
+   title = "Post-test Scores of Participants")
+
+# correlation between self-efficacy and test-score =(
+cor.test(df_scores$se_post, df_scores$test_score, method = "spearman") # r = 0.52, p < 0.001
+
+# super not significant!
+kruskal_test(test_score ~ condition, data=df, 
+             distribution="asymptotic")
+
+# pre-survey self-efficacy
+ggplot(df_scores, aes(x=se_pre, y=test_score, color=condition)) +
+  geom_point() +
+  facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+
+# post-survey self-efficacy
+ggplot(df_scores, aes(x=se_post, y=test_score, color=condition)) +
+  geom_point()
+
+ggplot(df_scores, aes(x=se_post, y=test_score, color=condition)) +
+  geom_point() +
+  facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+```
+
+# Participants who started but did not finish
+Emails in pre-survey but not in post-survey
+```{r}
+df_pre <- data_pre %>% 
+  filter(str_length(email) > 0, Finished == "True")
+
+# uid means actually used Coditz at some point
+df_pre$uid <- sapply(df_pre$email, get_uid)
+df_pre$condition <- sapply(df_pre$uid, get_condition)
+df_pre$condition <- as.factor(df_pre$condition)
+
+# those who didn't complete post-survey ("incomplete")
+df_pre_inc <- df_pre %>%
+  filter(!email %in% as.vector(df$email), !is.na(uid)) %>%
+  dplyr::select(email, condition, se_pre, uid, RecordedDate, reason, reason_other)
+
+head(df_pre_inc)
+```
+
+Looking at differences in self-efficacy by condition
+=> No detectable difference in self-efficacy by condition.
+45 dropped out in C1, 44 from C2, 34 in E1
+```{r}
+df_pre_inc %>% 
+  dplyr::group_by(condition) %>% 
+  dplyr::summarize(n=n(), 
+            mean=mean(se_pre), 
+            median = median(se_pre))
+
+ggdensity(df_pre_inc, x = "se_pre",
+   add = "median", rug = TRUE,
+   color = "condition", fill = "condition",
+   palette = c("#999999", "#E69F00", "#56B4E9"), 
+   title = "Pre-Survey Self-Efficacy of Participants Who Did Not Finish Study")
+
+
+# df_pre_inc$condition <- as.factor(df_pre_inc$condition)
+kruskal_test(se_pre ~ condition, data=df_pre_inc, 
+             distribution="asymptotic") # n.s. diff for s.e. of those who dropout
+```
+
+
+Creating dataframe of user actions
+* id
+* timestamp
+* action: {lesson, exercise, concept, worldview}
+* item_id: string 
+* is_recommended: TRUE, FALSE (won't be easy to get b/c next rec is given in AnswerSubmission)
+```{r}
+# uid <- df[1, "uid"]
+# df_user_log <- get_action_log(uid)
+# df_points <- generate_points(df_user_log)
+# df_user_log
+# df_points
+# plot_random_walk(df_points)
+# 
+# get_entropy_from_dist(df_points$dist_euc)
+# get_entropy_from_dist(df_points$dist_euc, prop_of_max = T)
+```
+
+
+## Looking at relationship between self-efficacy and agency by condition
+Looking at interaction between condition & self-efficacy (as reported afterwards) on entropy
+We expect self-efficacy to decrease
+```{r}
+mdl = lm(entropy ~ se_post_label * condition, data=df) # uses LMM
+shapiro.test(residuals(mdl)) # normality? no...
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+anova(mdl) # report anova
+
+# ggplot(df, aes(x=se_pre, y=entropy, color=condition)) +
+#   geom_point() +
+#   # facet_wrap(~condition) +
+#   geom_smooth(method='lm', formula= y~x)
+
+ggplot(df, aes(x=se_pre, y=entropy, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+
+# conduct post hoc pairwise comparisons within each factor
+with(df, interaction.plot(se_post_label, condition, entropy, ylim=c(0, max(df$entropy)))) # for convenience
+```
+
+## Does condition & self-efficacy affect entropy expressed?
+Nope.
+Aligned Rank Transform (non-parametric approach)
+```{r}
+mdl = art(entropy ~ se_post_label * condition, data=df) # uses LMM
+anova(mdl) # report anova
+shapiro.test(residuals(mdl)) # normality? => NO
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+# conduct post hoc pairwise comparisons within each factor
+with(df, interaction.plot(se_post_label, condition, entropy, ylim=c(0, max(df$entropy)))) # for convenience
+library(emmeans) # for emmeans
+emmeans(artlm(mdl, "condition"), pairwise ~ condition)
+emmeans(artlm(mdl, "se_post_label"), pairwise ~ se_post_label)
+```
+
+Looking at high and low SE learners of each condition
+```{r}
+SE_POST <- "se_post"
+TEST_SCORE <- "test_score"
+# given condition (e.g. "E1") and attribute (column name in df "data"),
+# return UID for given user that matches criteria
+get_uid_for_extreme <- function(target_condition, attribute, is_max = T, data = df) {
+  if(is_max) {
+    output <- data %>% filter(condition == target_condition) %>% 
+      filter(!!as.name(attribute) == max(!!as.name(attribute))) %>% dplyr::select(uid)
+  } else {
+    output <- data %>% filter(condition == target_condition) %>% 
+      filter(!!as.name(attribute) == min(!!as.name(attribute))) %>% dplyr::select(uid)
+  }
+  return(as.character(output))
+}
+e1_low_se_uid <- get_uid_for_extreme(E1, SE_POST, is_max = FALSE)
+c1_low_se_uid <- get_uid_for_extreme(C1, SE_POST, is_max = FALSE)
+c2_low_se_uid <- get_uid_for_extreme(C2, SE_POST, is_max = FALSE)
+
+e1_high_se_uid <- get_uid_for_extreme(E1, SE_POST)
+c1_high_se_uid <- get_uid_for_extreme(C1, SE_POST)
+c2_high_se_uid <- get_uid_for_extreme(C2, SE_POST)
+
+e1_low_score_uid <- get_uid_for_extreme(E1, TEST_SCORE, is_max = FALSE, data = df_scores)
+c1_low_score_uid <- get_uid_for_extreme(C1, TEST_SCORE, is_max = FALSE, data = df_scores)
+c2_low_score_uid <- get_uid_for_extreme(C2, TEST_SCORE, is_max = FALSE, data = df_scores)
+
+e1_high_score_uid <- get_uid_for_extreme(E1, TEST_SCORE, data = df_scores)
+c1_high_score_uid <- get_uid_for_extreme(C1, TEST_SCORE, data = df_scores)
+c2_high_score_uid <- get_uid_for_extreme(C2, TEST_SCORE, data = df_scores)
+
+# For E1, high SE learner had less entropy (changed concepts fewer times, did more at each concept)
+plot_random_walk(generate_points(get_action_log(e1_low_se_uid)), 
+                 title = "Lowest Post SE & Score, E1")
+plot_random_walk(generate_points(get_action_log(e1_high_se_uid)),
+                 title = "Highest Post SE, E1")
+
+# For C1, low SE learner visited concepts more, did 
+plot_random_walk(generate_points(get_action_log(c1_low_se_uid)),
+                 title = "Lowest Post SE, C1")
+plot_random_walk(generate_points(get_action_log(c1_high_se_uid)),
+                 title = "Highest Post SE, C1")
+
+plot_random_walk(generate_points(get_action_log(c2_low_se_uid)),
+                 title = "Lowest Post SE, C2")
+plot_random_walk(generate_points(get_action_log(c2_high_se_uid)),
+                 title = "Highest Post SE, C2")
+
+```
+
+Adding points at each step, where darker point indicates more visited (sign of exercise attempt)
+```{r}
+df_points <- generate_points(get_action_log(c1_low_se_uid))
+ggplot(df_points, aes(x, y)) + 
+    geom_vline(xintercept = 0,  color="darkgray") + 
+    geom_hline(yintercept = 0, color="darkgray") + 
+    # geom_path(size=1.5, alpha = 0.4) + xlim(-MAX_X, MAX_X) + 
+    geom_path(size=1, alpha = 0.4) + 
+    xlim(0, max(df_points$x)) + 
+    geom_point(colour="black",size=1, alpha = 0.4) +
+    # xlab(paste0("<-", get_action(WEST), " | ", get_action(EAST), " ->")) +
+    theme_minimal()
+```
+
+
+## Self-Efficacy on Learning
+Significant difference between low SE and med and high SE for learning
+```{r}
+mdl = art(test_score ~ se_post_label * condition, data=df_scores) # uses LMM
+anova(mdl) # report anova
+shapiro.test(residuals(mdl)) # normality? => NO for se_post_label. Yes for se_pre_label
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+# conduct post hoc pairwise comparisons within each factor
+with(df_scores, interaction.plot(se_post_label, condition, test_score, ylim=c(0, max(df$test_score, na.rm = T)))) # for convenience
+emmeans(artlm(mdl, "condition"), pairwise ~ condition)
+emmeans(artlm(mdl, "se_post_label"), pairwise ~ se_post_label)
+
+ggplot(df_scores, aes(x=se_pre, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+```
+
+## Agency on Learning
+Entropy & condition have no detectable affect on learning
+```{r}
+mdl = lm(test_score ~ entropy + condition, data=df_scores) # uses LMM
+shapiro.test(residuals(mdl)) # normality? no...
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+anova(mdl) # report anova
+
+# ggplot(df, aes(x=se_pre, y=entropy, color=condition)) +
+#   geom_point() +
+#   # facet_wrap(~condition) +
+#   geom_smooth(method='lm', formula= y~x)
+
+ggplot(df_scores, aes(x=entropy, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+
+ggplot(df_scores, aes(x=entropy_prop_max, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+
+# conduct post hoc pairwise comparisons within each factor
+with(df, interaction.plot(se_post_label, condition, entropy, ylim=c(0, max(df$entropy)))) # for convenience
+```
+
+When forced to make choice, self-efficacy and learning improved?
+```{r}
+mdl = art(test_score ~ se_post_label * condition, data=df_scores) # uses LMM
+anova(mdl) # report anova
+shapiro.test(residuals(mdl)) # normality? => NO
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+# conduct post hoc pairwise comparisons within each factor
+with(df_scores, interaction.plot(se_post_label, condition, test_score, ylim=c(0, max(df$test_score, na.rm = T)))) # for convenience
+emmeans(artlm(mdl, "condition"), pairwise ~ condition)
+emmeans(artlm(mdl, "se_post_label"), pairwise ~ se_post_label)
+
+ggplot(df_scores, aes(x=se_pre, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+```
+
+Looking at change in self-efficacy
+* Greater the self-efficacy improvement, the better the learning outcome (for C2 esp.)
+```{r}
+mdl = art(test_score ~ se_delta_label * condition, data=df_scores) # uses LMM
+anova(mdl) # report anova
+shapiro.test(residuals(mdl)) # normality? => ok
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+# conduct post hoc pairwise comparisons within each factor
+with(df_scores, interaction.plot(se_delta_label, condition, test_score, ylim=c(0, max(df$test_score, na.rm = T)))) # for convenience
+emmeans(artlm(mdl, "condition"), pairwise ~ condition)
+emmeans(artlm(mdl, "se_delta_label"), pairwise ~ se_delta_label)
+
+ggplot(df_scores, aes(x=se_delta, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x)
+```
+
+
+```{r}
+# learners w/ high PRE SE who performed best in each condition
+df_scores %>% filter(se_pre_label == "low") %>% group_by(condition) %>% filter(test_score == max(test_score))
+
+# learners w/ low POST SE who performed the best in each condition
+df_scores %>% filter(se_post_label == "low") %>% group_by(condition) %>% filter(test_score == max(test_score))
+```
+
+# Factors which associate with better learning
+* Self-efficacy before starting (also se_delta) **
+* num exercises correct ***
+* prior knowledge (trending)
+```{r}
+mdl = lm(test_score ~ se_delta + condition + num_ex_correct + num_prior_courses, 
+         data=df) # uses LMM
+summary(mdl)
+Anova(mdl) # report anova
+
+# conduct post hoc pairwise comparisons within each factor
+with(df, interaction.plot(se_post_label, condition, test_score))
+#  with(df, interaction.plot(se_post_label, condition, test_score, ylim=c(0, max(df$test_score)))) # for convenience
+```
+
+Checking assumptions of linear model
+http://www.sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials/
+```{r}
+# normality of residuals
+shapiro.test(residuals(mdl)) # normality? => ok
+plot(mdl,2)
+
+# check homoscedacity (equal variance)
+plot(mdl, 3) # spread-location plot should be about horizontal
+
+# check linearity
+plot(mdl, 1) # about horizontal. ok!
+
+# identify high-leverage points (55 w/ + residual, 7 and 76 as negative)
+plot(mdl,4)
+```
+
+Getting Effect size
+For two-way ANOVA with no repeated measures: The denominator df value is df of residual.
+```{r}
+# effect size
+anova2 <- aov(test_score ~ se_delta + condition + num_ex_correct + num_prior_courses, 
+         data=df)
+summary(anova2) # slightly different from one above
+etaSquared(anova2)
+
+# manually checking eta^2. close enough to output of etaSquared => Ok
+ss_se <- 621
+ss_cond <- 82
+ss_ex <- 1099
+ss_prior <- 423
+ss_residuals <- 5229
+ss_total <- ss_se + ss_cond + ss_ex + ss_prior + ss_residuals
+# ss_se / se_total #eta^2 of self-efficacy
+
+# effect size CI
+print("eta^2 CI for se_delta:")
+ci.R2(F.value = 8.436, df.1 = 1, df.2 = 71, # se_delta
+      conf.level = 0.95, Random.Predictors = T)
+
+print("eta^2 CI for condition:")
+ci.R2(F.value = 0.556, df.1 = 2, df.2 = 71, # condition. INCLUDES 0
+      conf.level = 0.95, Random.Predictors = T)
+
+print("eta^2 CI for num_ex_correct:")
+ci.R2(F.value = 14.925, df.1 = 1, df.2 = 71, # num_ex_correct
+      conf.level = 0.95, Random.Predictors = T)
+
+print("eta^2 CI for num_prior_courses:")
+ci.R2(F.value = 5.749, df.1 = 1, df.2 = 71, # num_prior_courses
+      conf.level = 0.95, Random.Predictors = T)
+
+
+df_scores$predicted <- predict(mdl, newdata = df_scores)
+df_scores$residuals <- residuals(mdl)
+
+```
+
+Post-hoc analysis
+```{r}
+# legend_map <-c("C1" = "Uninformed High-Agency", "E1" = "Informed High-Agency",
+                                # "C2" = "Informed Low-Agency")
+legend_map <-c("C1" = "UH ", "E1" = "IH ", "C2" = "IL ")
+SIZE_LARGE <- 36
+SIZE_MED <- 32
+SIZE_SMALL <- 28
+DOT_SIZE <- 8
+
+g <- ggplot(df, aes(x=num_prior_courses, y=test_score)) +
+  geom_point(aes(shape=condition, color=condition, size = DOT_SIZE)) +
+  # geom_smooth(method='lm', formula= y~x) + 
+  scale_color_brewer(palette="Dark2", labels=legend_map) + 
+  scale_shape_discrete(labels=legend_map) +
+  scale_size(guide = "none") +
+  labs(fill = "", y = "Post-Test Score", 
+       x = "# of Prior Prog. Courses" # TODO update
+       # x = "Change in Self-Efficacy" # TODO update
+       # x = "# of Exercises Correct" # TODO update
+       # title = paste0("Relationship between ", x_var, " and post-test scores")
+       ) +
+  ylim(0,max(df$test_score)) + 
+  theme_minimal() + 
+  theme(strip.text.x=element_text(size=SIZE_LARGE),
+        strip.text.y=element_text(size=SIZE_LARGE, angle=0)) +
+  theme(legend.position = "bottom") + 
+  theme(axis.text.y=element_text(size=SIZE_MED),
+      axis.title.y=element_text(size=SIZE_LARGE),
+      axis.text.x=element_text(size=SIZE_SMALL),
+      axis.title.x=element_text(size=SIZE_LARGE),
+      title = element_text(size=SIZE_SMALL)) + 
+  guides(shape = guide_legend(override.aes = list(size=8))) +
+  theme(axis.text.x=element_text(size=SIZE_LARGE),
+        legend.text = element_text(size=SIZE_MED), legend.title = element_blank())
+  # geom_text(x = 22, y = 12, label = lm_eqn(df), parse = T)
+
+g
+
+cor.test(df$num_ex_correct, df$test_score, method = "kendall")
+cor.test(df$num_prior_courses, df$test_score, method = "kendall")
+cor.test(df$se_delta, df$test_score, method = "kendall")
+
+# lm_eqn <- function(df){
+#     m <- lm(test_score ~ num_prior_courses, df); # TODO: manually change X
+#     r_test <- cor.test(df$num_prior_courses, df$test_score) # TODO: manually change X
+#     # eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2 [~ci.low, ~ci.high], 
+#     eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+#          list(a = format(unname(coef(m)[1]), digits = 2),
+#               b = format(unname(coef(m)[2]), digits = 2),
+#              r2 = format(summary(m)$r.squared, digits = 3),
+#              ci.low = format(r_test$conf.int[[1]], digits = 2),
+#              ci.high = format(r_test$conf.int[[2]], digits = 2)))
+#     as.character(as.expression(eq));
+# }
+# 
+# lm_eqn(df)
+
+
+# ggplot(df, aes(x=num_prior_courses, y=test_score, color=condition)) +
+#   geom_point() +
+#   # facet_wrap(~condition) +
+#   geom_smooth(method='lm', formula= y~x)
+# 
+# ggplot(df, aes(x=se_delta, y=test_score, color=condition)) +
+#   geom_point() +
+#   # facet_wrap(~condition) +
+#   geom_smooth(method='lm', formula= y~x)
+```
+
+```{r}
+cairo_pdf("./plots/post_hoc_num_courses.pdf", family = "Times")
+# cairo_pdf("./plots/post_hoc_se_delta.pdf", family = "Times")
+# cairo_pdf("./plots/post_hoc_num_ex.pdf", family = "Times")
+g
+dev.off()
+```
+
+
+Constants for creating freq of importance plots
+```{r}
+COLOR_NA <- "#FFFFFF" # white
+
+totals <- list(C1 = nrow(df %>% dplyr::filter(condition == C1)),
+               E1 = nrow(df %>% dplyr::filter(condition == E1)),
+               C2 = nrow(df %>% dplyr::filter(condition == C2)))
+```
+
+Updated and in importance_plot.Rmd
+```{r}
+feature_name <- "importance_bars"
+feature_name_pretty <- "Skill Bars"
+
+create_importance_plot <- function(feature_name, feature_name_pretty, 
+                                   hide_legend = TRUE) {
+  df_freq <- plyr::count(df, c("condition", feature_name))
+  
+  # get proportion within each condition
+  proportions <- c()
+  for(i in 1:nrow(df_freq)) {
+    condition <- df_freq[i,"condition"]
+    freq <- df_freq[i, "freq"]
+    n_condition <- totals[[as.character(condition)]]
+    prop <- freq / n_condition
+    
+    proportions <- append(proportions, prop)
+    # print(paste0(freq, " / ", n_condition, " =?= ", prop))
+  }
+  df_freq$prop <- proportions
+  
+  n_colors <- length(levels(df_freq[,feature_name])) # TODO: change as necesssary
+  imp_labels <- c("N/A (not applicable)", "Not at all", 
+              "Slightly", "Moderately", "Very", "Extremely")
+  c_palette <- brewer.pal(6, "BuPu")
+  if(n_colors == 6) { # has NA
+    c_palette[1] <- COLOR_NA
+  } else if(n_colors == 5) { # No NA
+    c_palette <- c_palette[2:length(c_palette)] # drop 1st value (b/c it represents N/A)
+    imp_labels <- imp_labels[2:length(imp_labels)]
+  } else {
+    print("Unknown number of colors")
+  }
+  
+  
+  g <- ggplot(df_freq, aes_string(x = "condition", y = "prop", fill =  forcats::fct_rev(df_freq[,feature_name]))) +
+  # ggplot(df_freq, aes(x = condition, y = prop, fill =  forcats::fct_rev(importance_recommend))) +
+    geom_bar(stat="identity") +
+    coord_flip() + # horizontal bar charts
+    theme_minimal() +
+    theme(legend.position = ifelse(hide_legend, "none", "bottom")) +
+    labs(fill = "", y = "Percentage of Responses", x = "Condition", 
+         title = paste0("Importance of ", str_to_title(feature_name_pretty))) + 
+    # scale_fill_manual(values = append(rev(brewer.pal(5, "BuPu")), COLOR_NA)) + 
+    scale_fill_manual(values = rev(c_palette), labels = rev(imp_labels)) + 
+    scale_x_discrete(labels=c("C1" = "Uninformed High-Agency", "E1" = "Informed High-Agency",
+                                "C2" = "Informed Low-Agency")) +
+    guides(fill = guide_legend(reverse = TRUE)) # reverse legend order
+  return(g)
+}
+  
+```
+
+Create plots of importance
+```{r}
+feature_map
+
+for(i in 1:nrow(feature_map)) {
+  cname <- feature_map[i, "informative_colname"]
+  desc <- feature_map[i, "feature_fancy"]
+  plt <- create_importance_plot(cname, desc)
+  ggsave(paste0("./plots/", cname, ".png"), plt, width = 5, height = 1.25)
+}
+
+create_importance_plot("importance_world", "world view", hide_legend = FALSE)
+```
+
+Determine significant differences in importance
+```{r}
+df_imp_wide <- df %>% dplyr::select(email, condition, importance_bars, 
+                               importance_check, importance_feedback, 
+                               importance_recommend, importance_world)
+
+df_imp_wide$email <- factor(df_imp_wide$email)
+df_imp_wide$condition <- factor(df_imp_wide$condition)
+
+# wide to long table, where response_text is populated by values between cols
+# importance_bars:importance_world
+df_imp <- gather(df_imp_wide, feature, response_text, 
+                 importance_bars:importance_world)
+
+df_imp$feature <- factor(df_imp$feature)
+
+importance_map <- c("Not applicable (N/A)" = NA,
+                    "Not at all important" = 0,
+                    "Slightly important" = 1,
+                    "Moderately important" = 2,
+                    "Very important" = 3,
+                    "Extremely important" = 4)
+
+# numeric equivalent
+df_imp$response <- as.numeric(revalue(df_imp$response_text, 
+                                              importance_map))
+```
+
+# Difference in preference by condition, feature
+NOT doing this because sample size is too small (singular matrix...)
+```{r}
+# contrasts(df_imp$feature) <- "contr.sum"
+# mdl = glmer(response ~ condition * feature + (1|email), data=df_imp, family=poisson) # uses LMM
+# Anova(mdl, type=3) # report anova
+# 
+# # cov matrix may be less than full rank. 
+# isSingular(mdl)
+# rePCA(mdl)
+# 
+# qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+```
+
+# C2 
+```{r}
+plot(num_ex_attempted ~ condition , data=df)
+y_var <- "num_ex_attempted"
+wilcoxsign_test(num_ex_attempted ~ condition , data=df, distribution="exact")
+# wilcoxsign_test(num_ex_attempted ~ condition , data=df, distribution="exact")
+
+# C2 condition attempted much fewer exercises!
+c1.c2 = wilcox.test(df[df$condition == C1, y_var], df[df$condition == C2, y_var], exact=FALSE)
+c1.e1 = wilcox.test(df[df$condition == C1, y_var], df[df$condition == E1, y_var], exact=FALSE)
+c2.e1 = wilcox.test(df[df$condition == C2, y_var], df[df$condition == E1, y_var], exact=FALSE)
+p.adjust(c(c1.c2$p.value, c1.e1$p.value, c2.e1$p.value), method="holm")
+```
+
+Write data to csv
+```{r}
+write.csv(df_scores, file = "./data/data_all.csv")
+```
+
+# Analysis for Revisions
+* learning ~ condition (+ prior prog. course, pre SE)
+* change in SE ~ condition
+```{r}
+mdl = lm(test_score ~ has_prior_knowledge + condition + se_pre, data=df_scores) # uses LMM
+summary(mdl)
+```
+
+Checking assumptions of linear model
+http://www.sthda.com/english/articles/39-regression-model-diagnostics/161-linear-regression-assumptions-and-diagnostics-in-r-essentials/
+```{r}  
+# normality of residuals
+shapiro.test(residuals(mdl)) # normality? => ok
+plot(mdl,2)
+
+# check homoscedacity (equal variance)
+plot(mdl, 3) # spread-location plot should be about horizontal
+
+# check linearity
+plot(mdl, 1) # about horizontal. ok!
+
+# identify high-leverage points (55 w/ + residual, 7 and 76 as negative)
+plot(mdl,4)
+```
+
+```{r}
+anova(mdl) # report anova
+
+ggplot(df_scores, aes(x=se_pre, y=test_score, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x) +
+  scale_color_discrete(labels = c("UH", "IL", "IH"))
+
+# Effect size
+etaSquared(mdl)
+
+# manually checking eta^2. close enough to output of etaSquared => Ok
+ss_se <- 499.0
+ss_cond <- 44.6
+ss_prior <- 583.0
+ss_residuals <- 6482.9
+ss_total <- ss_se + ss_cond + ss_prior + ss_residuals
+
+residuals_df <- 74
+
+# effect size CI
+library(MBESS)
+
+# Given eta squaed value and F-value, print eta with CI in square brackets
+# e.g. 0.213 [0.062, 0.314]
+print_eta <- function(eta, fval, num_decimals = 3, ci = 0.95) {
+  eta_ci <- ci.R2(F.value = fval, df.1 = 1, df.2 = residuals_df,
+      conf.level = ci, Random.Predictors = T)
+  low <- round(eta_ci$Lower.Conf.Limit.R2, num_decimals)
+  high <- round(eta_ci$Upper.Conf.Limit.R2, num_decimals)
+  
+  print(paste0(round(eta, num_decimals), " [", low, ", ", high, "]"))
+  
+}
+
+paste("eta^2 CI for se_se:")
+print_eta(ss_se / ss_total, 5.6958)
+
+paste("eta^2 CI for se_cond:")
+print_eta(ss_cond / ss_total, 0.2545)
+
+paste("eta^2 CI for  prior knowledge:")
+print_eta(ss_prior / ss_total, 6.6551)
+
+
+# print(paste("eta^2 CI for se_pre:", ss_se / ss_total))
+# ci.R2(F.value = 5.6958, df.1 = 1, df.2 = residuals_df,
+#       conf.level = 0.95, Random.Predictors = T)
+# 
+# 
+# print(paste("eta^2 CI for condition:", ss_cond / ss_total))
+# ci.R2(F.value =  0.2545, df.1 = 2, df.2 = residuals_df, # condition. INCLUDES 0
+#       conf.level = 0.95, Random.Predictors = T)
+# 
+# print(paste("eta^2 CI for prior knowledge:", ss_prior / ss_total))
+# tmp <- ci.R2(F.value = 6.6551, df.1 = 1, df.2 = residuals_df, # num_prior_courses
+#       conf.level = 0.95, Random.Predictors = T)
+
+
+df_scores$predicted <- predict(mdl, newdata = df_scores)
+df_scores$residuals <- residuals(mdl)
+
+```
+
+Relationship between more exercises and test-score performance?
+```{r}
+mdl = lm(test_score ~ num_ex_correct + condition + se_pre, data=df_scores) # uses LMM
+summary(mdl)
+shapiro.test(residuals(mdl)) # normality? => ok
+qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+
+anova(mdl) # report anova
+
+cor.test(df_scores$num_ex_correct, df_scores$test_score, method = "spearman")
+
+ggplot(df_scores, aes(x=num_ex_correct, y=test_score, shape=condition, color=condition)) +
+  geom_point() +
+  # facet_wrap(~condition) +
+  geom_smooth(method='lm', formula= y~x) +
+  scale_color_discrete(labels = c("UH", "IL", "IH")) + 
+  ylim(c(0, 40))
+```
+
+Post-hoc
+```{r}
+# prior knowledge & test score
+pk <- wilcox.test(test_score ~ has_prior_knowledge, data = df_scores, 
+                  distribution="exact")
+
+# Vargha A (generalized CL effect size)
+VD.A(test_score ~ has_prior_knowledge, data = df_scores) 
+
+# equiv to VD.A
+# pk$n <- xtabs(~ has_prior_knowledge, data = df_scores)
+# pk$effect.size <- pk$statistic / (pk$n[1] * pk$n[2])
+
+df_scores %>% dplyr:: group_by(has_prior_knowledge) %>%
+  dplyr::summarise(median = median(test_score),
+                   iqr = IQR(test_score))
+
+# self-efficacy & test score
+se <- cor.test(df$se_pre, df$test_score, method = "kendall")
+
+```
+
+
+
+median split on SE
+```{r}
+# mdl = lm(test_score ~ num_prior_courses + condition + se_pre, data=df_scores) # uses LMM
+# summary(mdl)
+# shapiro.test(residuals(mdl)) # normality? => ok
+# qqnorm(residuals(mdl)); qqline(residuals(mdl)) # seems to conform
+# 
+# anova(mdl) # report anova
+```
+
+
+## Change in SE
+```{r}
+mdl_se = aov(se_delta ~ condition, data = df_scores)
+summary(mdl_se)
+shapiro.test(residuals(mdl_se)) # normality? => ok
+
+anova(mdl_se)
+
+ggplot(df_scores, aes(x=condition, y=se_delta)) +
+  geom_violin() + 
+  geom_dotplot(binaxis='y', stackdir='center', dotsize=1) + 
+  scale_x_discrete(labels = c("UH", "IL", "IH"))
+```
+
+## Num exercises completed
+```{r}
+mdl_ex = aov(num_ex_correct ~ condition, data = df_scores)
+shapiro.test(residuals(mdl_ex)) # normality? => NOT normal
+
+df_scores %>% dplyr::group_by(condition) %>% 
+  dplyr::summarize(median = median(num_ex_correct), iqr = IQR(num_ex_correct))
+
+kruskal_test(num_ex_correct ~ condition, data=df_scores, distribution="asymptotic") # can't do exact with 3 levels
+# for reporting Kruskal-Wallis as chi-square, we can get N with nrow(ide3)
+
+# manual post hoc Mann-Whitney U pairwise comparisons
+# note: wilcox_test we used above doesn't take two data vectors, so use wilcox.test
+uh.ih = wilcox.test(df_scores[df_scores$condition == C1,]$num_ex_correct, df_scores[df_scores$condition == E1,]$num_ex_correct, exact=FALSE)
+uh.il = wilcox.test(df_scores[df_scores$condition == C1,]$num_ex_correct, df_scores[df_scores$condition == C2,]$num_ex_correct, exact=FALSE)
+il.ih = wilcox.test(df_scores[df_scores$condition == C2,]$num_ex_correct, df_scores[df_scores$condition == E1,]$num_ex_correct, exact=FALSE)
+
+p.adjust(c(uh.ih$p.value, uh.il$p.value, il.ih$p.value), method="holm")
+
+df_uh_il <- df_scores %>% dplyr::filter(condition != E1)
+df_uh_il$condition <- as.factor(as.character(df_uh_il$condition)) # remove 3rd level
+levels(df_uh_il$condition) # to know which way effect size goes
+VD.A(num_ex_correct ~ condition, data = df_uh_il) 
+
+
+df_il_ih <- df_scores %>% dplyr::filter(condition != C1)
+df_il_ih$condition <- as.factor(as.character(df_il_ih$condition)) # remove 3rd level
+levels(df_il_ih$condition) # to know which way effect size goes
+VD.A(num_ex_correct ~ condition, data = df_il_ih) 
+
+
+# post-hoc w/ Conover test
+# library(PMCMR)
+# posthoc.kruskal.conover.test(num_ex_correct ~ condition, data=df_scores, p.adjust.method="holm") # Conover & Iman (1979)
+
+```
+

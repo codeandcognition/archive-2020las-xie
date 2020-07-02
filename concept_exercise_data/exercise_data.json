@@ -1,0 +1,3198 @@
+{
+  "2" : {
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "Determine if the given variable names are allowed in Python",
+    "questions" : [ {
+      "answer" : "Yes",
+      "choices" : [ "Yes", "No" ],
+      "code" : "my_variable",
+      "difficulty" : 0,
+      "feedback" : "",
+      "followupPrompt" : "",
+      "hint" : "",
+      "prompt" : "Variable Name",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Which variable names are valid?"
+  },
+  "3" : {
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "labels" : {
+      "Type" : "prompt",
+      "Value" : "answer"
+    },
+    "prompt" : "Write 324 as an integer, float, and string",
+    "questions" : [ {
+      "answer" : "",
+      "code" : "",
+      "difficulty" : 0,
+      "feedback" : "",
+      "followupPrompt" : "",
+      "hint" : "",
+      "prompt" : "Number (int)",
+      "type" : ""
+    }, {
+      "code" : "",
+      "prompt" : "Number"
+    } ],
+    "shortPrompt" : "Can you write the same number as different types?"
+  },
+  "4" : {
+    "code" : "",
+    "concepts" : [ "conditionals" ],
+    "labels" : {
+      "Type" : "prompt",
+      "Value" : "answer"
+    },
+    "prompt" : "Write 124 as an integer, float, and string. Dummy question",
+    "questions" : [ {
+      "answer" : "",
+      "code" : "",
+      "difficulty" : 0,
+      "feedback" : "",
+      "followupPrompt" : "",
+      "hint" : "",
+      "prompt" : "Number (int)",
+      "type" : ""
+    }, {
+      "code" : "",
+      "prompt" : "Number"
+    } ],
+    "shortPrompt" : ""
+  },
+  "-LH_KNtUIv-mnBkZz2-k" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "dataTypes" ],
+    "prompt" : "",
+    "questions" : [ {
+      "colNames" : [ "Value", "Data Type" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "123",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "integer",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "Not quite! There are only two boolean values: True and False",
+          "float" : "Not quite! Notice that 123 does not contain any decimals in it.",
+          "integer" : "Correct! The number 123 does not contain any decimals in it and it is not wrapped in quotations.",
+          "string" : "Not quite! Notice that 123 is not wrapped in quotations."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "\"123\"",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "string",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "Not quite! There are only 2 boolean values. True and False",
+          "float" : "Not quite! Notice that 123 is wrapped in quotations.",
+          "integer" : "Not quite! Notice that 123 is wrapped in quotations.",
+          "string" : "Correct! Good job on noticing that 123 is wrapped in quotations"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "123.0",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "float",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "Not quite! There are only two boolean values. True and False",
+          "float" : "Correct! 123 is represented as a rational number. Thus, it contains a decimal point.",
+          "integer" : "Not quite! Notice that 123.0 has a decimal point in it.",
+          "string" : "Not quite! Notice that 123.0 is not wrapped in quotations."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "True",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "boolean",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "Correct! There are only two boolean values. True and False.",
+          "float" : "Not quite! Remember, float data type refers to rational numbers and they have decimal points.",
+          "integer" : "Not quite! Remember, integer refers to natural numbers.",
+          "string" : "Not quite! Notice that True is not wrapped in quotations."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "'False'",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "string",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "",
+          "float" : "",
+          "integer" : "",
+          "string" : ""
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "\"123.0 False\"",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "string",
+        "choices" : [ "boolean", "float", "integer", "string" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "boolean" : "Not quite! There are only two boolean values. True and False.",
+          "float" : "Not quite! The float data type is analogous to rational numbers. They contain a decimal point.",
+          "integer" : "Not quite! Notice that the content is wrapped in quotations. The integer data type is analogous to natural numbers.",
+          "string" : "Correct! Note that the content is wrapped in double-quotation marks."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Circle the data type of each value",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "What's that data type?"
+  },
+  "-LH_OAGDyCokBioKVd-r" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "dataTypes" ],
+    "prompt" : "",
+    "questions" : [ {
+      "colNames" : [ "Data Type", "Value" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Number (integer)",
+        "type" : ""
+      }, {
+        "answer" : "324",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! The integer data type is analogous to natural numbers in math.",
+          "incorrect" : [ "Not quite! Remember that numbers can be represented in different ways." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Integers do not have decimal points. They're whole numbers!",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Number (float)",
+        "type" : ""
+      }, {
+        "answer" : "324.0",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! 324.0 is a represented as a rational number. Hence the decimal point!",
+          "incorrect" : [ "Not quite! Numbers can be represented in different ways.", "Recall that the float data type must contain a decimal point." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Floats have a decimal. You don't technically need a zero (0) after the decimal point, but add one for good measure!",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "String",
+        "type" : ""
+      }, {
+        "answer" : "'324'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! 324 is wrapped in quotations indicating that it is of type string.",
+          "incorrect" : [ "Not quite! Notice that 324 must be represented as a string.", "Strings are wrapped in quotation marks." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Strings have quotes around them. (use single quotes!)",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Write `324` as an integer, float, and string.",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you write the same number as different types?"
+  },
+  "-LHdzxfzAahw8MWKFSV_" : {
+    "bktParams" : {
+      "guess" : 0.2,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "variables" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Variable Name", "Allowed in Python?" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "my_variable",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Yes",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "Does this variable name violate any variable naming rules?",
+          "Yes" : "This variable name does not violate any variable naming rules."
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "1st_place",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "Variable names cannot start with a number.",
+          "Yes" : "Does this variable name violate any rules?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "_important_",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Yes",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "What special characters are allowed in variable names.",
+          "Yes" : "Underscores are the only special characters allowed in variable names."
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "first-name",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "Only letters, numbers, and underscores are allowed in variable names. Dashes are not.",
+          "Yes" : "What characters are allowed in variable names?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "True",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "True is a special word because it is a boolean value, so it can't be a variable name.",
+          "Yes" : "What types of words are not allowed as variable names?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "false",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Yes",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "No" : "Is this a keyword?",
+          "Yes" : "This name is technically ok, but it is not recommended because you could easily confuse this with the boolean value False!"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine if the given variable names are allowed in Python.",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Which variable names are valid?"
+  },
+  "-LHeQczvZEEVsszLiWHU" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "num1 = 2\nnum2 = 1\ntemp = num1\nnum1 = num2\nnum2 = temp",
+    "concepts" : [ "variables" ],
+    "prompt" : "Go through the code below line-by-line and do the following: \n\n 1. When a variable is created, add it as a row in the table.\n\t1. Add the variable name (e.g. `my_variable_name`) in the left \"Variable Name\" column.\n\t2. Write the new variable's value (e.g. `'value1'`) in right \"Value History\" column.\n2. When a variable is updated, attach the new value next to the old value. \n\t1. Find the variable by variable name.\n\t2. In the corresponding _Value History_ column, add a comma after the old value and write in the new/updated value (e.g. `'value1','updated value1'`).",
+    "questions" : [ {
+      "answer" : {
+        "num1" : [ 2, 1 ],
+        "num2" : [ 1, 2 ],
+        "temp" : [ 2 ]
+      },
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Correct",
+        "incorrect" : [ "Incorrect" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "When a variable is updated, add the new value right of the old value, separating them with a comma.",
+      "prompt" : "",
+      "type" : "memoryTable"
+    } ],
+    "shortPrompt" : "Can you read variable updates?"
+  },
+  "-LHeX8YcqjR6qdjkFfh6" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Determine if variable swaps are correctly done. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "A temporary variable was created but the variable update was not done correctly",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "player1 = \"Jose\"\nplayer2 = \"Kim\"\ntemp = player1\nplayer2 = player1\nplayer1 = temp",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "On line 4, player2's value is getting overwritten but it hasn't been save. The variable whose value was saved in the temp variable should be updated first.",
+        "A temporary variable was not created" : "The temporary variable in this case is temp.",
+        "There are not 2 values to be swapped" : "The 2 values to be swapped in this case are \"Jose\" and \"Kim\".",
+        "This is a correct variable swap" : "When this code runs, both variables end up with the value \"Jose\", which is not the correct variable swap."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    }, {
+      "answer" : "There are not 2 values to be swapped",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "num1 = 23\ntemp_val = num1\nnum2 = num1\nnum1 = temp",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "No variables were updated in this block of code.",
+        "A temporary variable was not created" : "The temporary variable in this case is temp_val.",
+        "There are not 2 values to be swapped" : "23 is the only value in this code block.",
+        "This is a correct variable swap" : "A variable swap has not occurred in this block of code."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    }, {
+      "answer" : "A temporary variable was not created",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "current_player = \"Wanda\"\nnext_player = \"Jimmy\"\ncurrent_player = next_player\nnext_player = current_player",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "No temporary variable was created.",
+        "A temporary variable was not created" : "A temporary variable is necessary so that values are not lost during a variable swap.",
+        "There are not 2 values to be swapped" : "The 2 values to be swapped in this case are \"Wanda\" and \"Jimmy\".",
+        "This is a correct variable swap" : "When this code runs, both variables end up with the value \"Jimmy\", which is an incorrect variable swap."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Are these variable swaps?"
+  },
+  "-LHid2oYERT-n-i-0tkL" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "variables" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code to Declare Variable", "Allowed in Python?" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "my_var = \"two\"",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Yes",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "No" : "This declaration is allowed in Python.",
+          "Yes" : "This declaration is allowed in Python."
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "\"hello\" = reply",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "No" : "The variable name should be on the left of the equal operator and value on the right.",
+          "Yes" : "Is each element of the variable declaration in the correct order?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "happy!response = \"yay!\"",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "No" : "Only letters, numbers, and underscores are allowed in variable names, not exclamation points.",
+          "Yes" : "Does this declaration use a valid variable name?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "NAME = \"abby\"",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Yes",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "No" : "Are the elements of this variable declaration in the correct order? Does the variable name violate any rules?",
+          "Yes" : "This is a valid variable declaration."
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "should_run == False",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "No",
+        "choices" : [ "Yes", "No" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "No" : "To declare a variable, you use a single equals sign. The double equals sign (==) checks for equality something we'll learn later.",
+          "Yes" : "Does a single equals sign have the same meaning as a double equals sign?"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine if the lines of code properly declare a variable.",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Is this a variable declaration?"
+  },
+  "-LHifx2aSN84XhSiLABp" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "variables" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "cost = 1.50        # (1)\nitem = \"drink\"     # (2)\nshould_buy = False # (3)\ncost = 1.00        # (4)\nshould_buy = True  # (5)",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "postCondition" : "print(cost)\nprint(item)\nprint(should_buy)",
+      "prompt" : "In the box below, write code that does the following: \n\n1. Declare a variable named `cost` and set it to `1.50`. \n2. Declare a variable named `item` and set it to `\"drink\"`. \n3. Declare a variable named `should_buy` and set it to `False`. \n4. Update variable `cost` to `1.00`. \n5. Update `should_buy` and set it to `True`.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you write code with variables?"
+  },
+  "-LHtTLcZYq9HG7-5hA7o" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "arithmeticOperators" ],
+    "prompt" : "For the following lines of code, determine the output type and the actual result",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Data Type", "Result" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "5.0 + 2",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Float",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "float" : "Correct! Any operation that involves a float will result in a float as output.",
+          "integer" : "Not quite! Think back to the lesson on what happens to calculations involving a float"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "7.0",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Any operation that involves a float will result in a float as output.",
+          "incorrect" : [ "Not quite. Think back to the lesson on calculations with float", "Do operations that involve float ever result in integers?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "7 // 2",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Integer",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Not quite. Note that the two slashes means this is floor division",
+          "Integer" : "Correct! In floor division, integers drop the decimal value."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "3",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! In floor division, integers drop the decimal value.",
+          "incorrect" : [ "Not quite. Do you remember how integers handle decimal values in floor division?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "(4 + 2) / 2.0",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Float",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Correct! Operations involving decimals result in floating point numbers.",
+          "Integer" : "Not quite! Try breaking this expression into parts and solve each part."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "3.0",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Operations involving decimals result in floats",
+          "incorrect" : [ "Notice that we're dividing by a float", "Do operations involving floats result in integers?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "7 % 2 + 1.1",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Float",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Correct!",
+          "Integer" : "Not quite! This calculation involves a float"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "2.1",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct!",
+          "incorrect" : [ "Calculate the modulus before the addition operator." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "How does the computer do math?"
+  },
+  "-LHu1IBEzIuSJHg6e6iz" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "findMaxMin" ],
+    "prompt" : "For each chunk of code, read the code and fill in the variable table to identify values for variables a, b, and c which would result in the code incorrectly finding the minimum value. Then, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "The value being printed does not match the value being checked in the conditional",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b and a < c):\n    print(a)\nelif (c < b):\n    print(b)\nelse:\n    print(c)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "The conditionals correctly eliminate values that are not the minimum.",
+        "All values are not eliminated" : "The conditionals correctly eliminate all values.",
+        "The value being printed does not match the value being checked in the conditional" : "On line 3, the values of b and c are compared. However, on the following lines, the larger of the two values are being printed instead of the smaller. This would cause the incorrect value to be printed whenever a is not the minimum."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    }, {
+      "answer" : "A value is not eliminated correctly",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b):\n    print(a)\nelif (a < c):\n    print(a)\nelif (b < c):\n    print(b)\nelse:\n    print(c)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "On line 2, the value of a is printed when the value of c has not yet been eliminated. On line 4, the value of a is printed when it is less than c but also greater than b, meaning a is not the minimum.",
+        "All values are not eliminated" : "This code allows for the elimination of each value as not the minimum.",
+        "The value being printed does not match the value being checked in the conditional" : "After every conditional, the smaller of the two compared value is printed."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    }, {
+      "answer" : "All values are not eliminated",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b) and a < c):\n    print(a)\nelif (b < c):\n    print(b)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "The conditionals correctly eliminate values that are not the minimum.",
+        "All values are not eliminated" : "There is no path to print the value of c, should it be the minimum.",
+        "The value being printed does not match the value being checked in the conditional" : "After every conditional, the smaller of the two compared value is printed."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "What's wrong with this code?"
+  },
+  "-LI7Y47TE6sfVWM6mk0y" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "findMaxMin" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "if (x < y and x < z) :\n    min_val = x\nelif (y < z) :\n    min_val = y\nelse:\n    min_val = z\n\nif (x > y and x > z):\n    max_val = x\nelif (y > z):\n    max_val = y\nelse:\n    max_val = z\n\nprint (min_val + max_val) ",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Correct feedback",
+        "incorrect" : [ "Incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "Try this plan: (1) Use max/min template (if/elif/else statements) to find max value and store it. (2) Use max/min template (if/elif/else statements) to find min value and store it. (3) Print sum of max and min values.",
+      "postCondition" : "max_val = max(x, max(y, z))\nmin_val = min(x, min(y, z))\nprint(max_val + min_val)",
+      "preCondition" : "import random\nrandom.seed(\"<SEED>\")\nx = random.randint(1,1000)\ny = random.randint(1,1000)\nz = random.randint(1,1000)",
+      "prompt" : "Assume there are three values, `x`, `y`, and `z`. Write code that prints the sum of whichever are the maximum and minimum values.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you sum the max & min values?"
+  },
+  "-LI7eFZrIo7PKFLDo3uO" : {
+    "bktParams" : {
+      "guess" : 0.25,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Read the code below and determine if digit processing is done correctly. If it is not, identify the error from the multiple choice options.",
+    "questions" : [ {
+      "answer" : "This code processes digits correctly",
+      "choices" : [ "The starting value is not an integer", "Digits are not properly extracted from starting value", "The starting value is not updated properly", "This code processes digits correctly" ],
+      "code" : "inp = 31\nlast_digit = inp % 10\ninp = inp // 10\nfirst_digit = inp % 10",
+      "difficulty" : "1",
+      "feedback" : {
+        "Digits are not properly extracted from starting value" : "Not quite! Recall the purpose of the % operator. What does inp % 10 do?",
+        "The starting value is not an integer" : "Not quite! 31 is an integer.",
+        "The starting value is not updated properly" : "Not quite! Recall how division works in Python. What does 31 / 10 evaluate to?",
+        "This code processes digits correctly" : "Correct! % 10 extracts the last digit and / 10 correctly updates the inp value"
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "What's the error?"
+  },
+  "-LI7eglW5ulpzrxa8Kns" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "amt_paid = 231.89\namt_owed = 12152.23\n\ntemp = amt_paid\namt_paid = amt_owed\namt_owed = temp\n",
+      "code" : "amt_paid = 231.89\namt_owed = 12152.23",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct feedback",
+        "incorrect" : [ "Have you used a temporary variable to ensure neither value is lost during the swap?", "Make sure you are not overwriting a variable's value before saving it into a temporary variable." ]
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "postCondition" : "print(amt_paid)\nprint(amt_owed)",
+      "prompt" : "Joyce is writing code to keep track of how much money she has paid towards a loan. Currently, `amt_paid = 231.89` and `amt_owed = 12152.23`. She realizes she made an error and mixed up the values for the variables `amt_paid` and `amt_owed`. In reality, she has actually almost paid off the loan. Help Joyce by swapping the values so that the amount she has paid towards the loan (`amt_paid`) is greater than the amount owed (`amt_owed`)!",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Write a variable swap."
+  },
+  "-LI7jxOzdaWOL-pL12lc" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Given `input_a`, a 2 digit number and `input_b`, a 3 digit number, write code that sums all the digits in the two inputs and stores the sum in a variable `total`. Print this total.",
+    "questions" : [ {
+      "answer" : "a_last = input_a % 10 # store last digit\ninput_a = input_a / 10 # remove last digit\na_first = input_a % 10 # store first\n\nb_last = input_b % 10       # store last digit\ninput_b = input_b / 10      # remove last digit\nb_middle = input_b % 10  # store middle digit\ninput_b = input_b / 10      # remove middle\nb_first = input_b % 10       # store first digit\n\ntotal = a_last + a_first + b_last + b_middle + b_first # sum all digits\nprint(total)",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Good job! There are many ways of solving this problem. We provided one possible solution here.",
+        "incorrect" : [ "Not quite!" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "preCondition" : "input_a = 23\ninput_b = 314",
+      "prompt" : "",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you sum the digits?"
+  },
+  "-LI8QOtFfifzxyopSg9a" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "conditionals" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "if (profit > cost) :\n    money_made = profit - cost\n    print(\"net profit\")\n    print(money_made)\nelif (profit == cost) :\n    print(\"break even\")\nelse:\n    print(\"lost money\")",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "preCondition" : "profit = 87\ncost = 75",
+      "prompt" : "Write code that does the following:\n- Uses an if statement to check if an existing variable `profit` is greater than `cost`. If this condition evaluates to `True`, then the following code evaluates:\n    - Declare a variable `money_made` and set it to the `profit` minus the `cost`.\n    - Print `\"net profit\"`.\n    - Print the value store in `money_made`.\n- Uses an else if condition where the condition checks if `profit` and `cost` are equal. If this condition evaluates to `True`, then the following code evaluates:\n    - Print \"break even\".\n- Uses an else condition that would evaluate the following code:\n    - Print \"lost money\".",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you write an if/else?"
+  },
+  "-LI8TtwNcCI3eRW9Qm1T" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Write the final output in the \"output\" box, or write \"error\" if a certain value cannot be determined. Then, determine if float equality is correctly checked. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : {
+        "a" : 1.21,
+        "b" : "'1.211'",
+        "diff" : "error",
+        "e" : 0.001
+      },
+      "code" : "a = 1.21\nb = \"1.211\"\ne = 0.001\ndiff = abs(a - b)\nprint(d < e)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct feedback",
+        "incorrect" : [ "Incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The values to compare are not numbers (integer or float)",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback placeholder c",
+          "The threshold value is defined but is not a small positive number" : "feedback placeholder b",
+          "The values to compare are not numbers (integer or float)" : "feedback placeholder a",
+          "This code checks float equality correctly" : "feedback placeholder d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    }, {
+      "answer" : {
+        "OUTPUT" : "True",
+        "x" : 2,
+        "y" : 2.004,
+        "z" : -0.004
+      },
+      "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+      "code" : "x = 2\ny = 2.004\nz = x - y\nprint(z < 0.001)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The absolute difference is not compared to be less than a threshold",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback c",
+          "The threshold value is defined but is not a small positive number" : "feedback b",
+          "The values to compare are not numbers (integer or float)" : "feedback a",
+          "This code checks float equality correctly" : "feedback d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    }, {
+      "answer" : {
+        "OUTPUT" : "False",
+        "a" : 1.02,
+        "b" : 1.01,
+        "d" : 0.01,
+        "e" : -0.05
+      },
+      "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+      "code" : "a = 1.02\nb = 1.01\ne = -0.05\nd = abs(a - b)\nprint(d < e)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The threshold value is defined but is not a small positive number",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback c",
+          "The threshold value is defined but is not a small positive number" : "feedback b",
+          "The values to compare are not numbers (integer or float)" : "feedback a",
+          "This code checks float equality correctly" : "feedback d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    } ],
+    "shortPrompt" : "What's the error?"
+  },
+  "-LI8V0KDdN1jMltnrCJK" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "thres = 0.001\n\nequal_ab = abs(a - b)\nequal_bc = abs(b - c)\n\nall_diff = equal_ab + equal_bc\n\nprint(all_diff < thres)",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "Get the differences between a and b and the differences between b and c.",
+      "postCondition" : "print(abs(a - b) < 0.001)\nprint(abs(a - c) < 0.001)\nprint(abs(b - c) < 0.001)",
+      "preCondition" : "import random\nrandom.seed(\"<SEED>\")\nrandVal = 0.001 + random.randint(0,1)\na=0.02+randVal+random.randint(0,1)\nb=0.02+randVal+random.randint(0,1)\nc=0.02+randVal+random.randint(0,1)",
+      "prompt" : "`a`, `b`, and `c` are all variables that are close to each other. Write code that checks if `a`, `b`, and `c` are all approximately equal (within `0.001` of each other). If all variables are equal, then print `True`. Otherwise, print `False`.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Are 3 floats equal?"
+  },
+  "-LIDqHrs-j4LijIs8nzg" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "arithmeticOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "val = 7 % 2 # set variable to result 7 % 2\nval = val * (1.0 + 0.2)  # update variable by multiplying current value",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "In the first line, we use the modulus operator to get the remainder between 7 and 2, which is an integer because the arithmetic operation was between 2 integers. We then multiply the result by the sum of 2 floats (1.0 and 0.2). We include the parenthesis around these floats to ensure the values are summed before multiplying with the variable val. The output is a float because the arithmetic operation included a float.",
+        "incorrect" : [ "Not quite. Follow the instructions step by step." ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "code" : "",
+        "colNames" : [ "Statement", "Response" ],
+        "data" : [ {
+          "answer" : "integer",
+          "code" : "",
+          "difficulty" : 1,
+          "feedback" : "",
+          "followupPrompt" : "",
+          "hint" : "placeholder",
+          "prompt" : "When the variable val is declared, it is a/an",
+          "type" : ""
+        }, {
+          "answer" : "integer",
+          "choices" : [ "integer", "float" ],
+          "code" : "",
+          "difficulty" : "1",
+          "feedback" : {
+            "float" : "Not quite! Note that the operation is between two integers.",
+            "integer" : "Correct! It is an integer because the operation was between two integers."
+          },
+          "followupPrompt" : "",
+          "hint" : "placeholder",
+          "prompt" : "",
+          "type" : "multipleChoice"
+        }, {
+          "answer" : "integer",
+          "code" : "",
+          "difficulty" : 1,
+          "feedback" : "",
+          "followupPrompt" : "",
+          "hint" : "placeholder",
+          "prompt" : "When the variable val is updated, it is a/an",
+          "type" : ""
+        }, {
+          "answer" : "float",
+          "choices" : [ "integer", "float" ],
+          "code" : "",
+          "difficulty" : "1",
+          "feedback" : {
+            "float" : "Correct! The output is a float because the arithmetic operation included a float",
+            "integer" : "Not quite! The output is a float because the arithmetic operation included a float"
+          },
+          "followupPrompt" : "",
+          "hint" : "placeholder",
+          "prompt" : "",
+          "type" : "multipleChoice"
+        } ],
+        "followupPrompt" : "",
+        "prompt" : "Complete these statements about the code you wrote above.",
+        "type" : "table"
+      } ],
+      "hint" : "Declare a variable named val with `val =`",
+      "postCondition" : "print(val)",
+      "preCondition" : "",
+      "prompt" : "_Write code that does the following:_\n- Declare a variable `val` and set it to `7` modulus `2`.\n- Update the value of `val` by multiplying the current value by the sum of `1.0` and `0.2`.\n\n__After you're done writing code, write a comment next to each line describing what the line does in your own words.__\n",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you write arithmetic operators with variables?"
+  },
+  "-LII4_3hnAydP177H06u" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "printStatements" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "inp = 5            # set variable to number\nprint(\"begin\")  # print string literal\nprint(inp)        # print value in inp\nprint(inp * 2)   # set value in inp multiplied by 2\nprint(inp % 3)  # print remainder of value in inp divided by 3",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Placeholder" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "begin\n5\n10\\n2",
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "correct" : "",
+          "incorrect" : [ "Remember that print statements and variable updates are separate things.", "Even though we wrote code to do arithmetic operations on the variable inp and print the output, we never actually wrote code to update the variable" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "Write the output of this code below:",
+        "type" : "shortResponse"
+      } ],
+      "hint" : "placeholder",
+      "postCondition" : "print(inp)",
+      "prompt" : "Write code that does the following:\n- Declares a variable `inp` and set it to `5`.\n- Print the string `\"begin\"`\n- Print the value stored in `inp`.\n- Print the value stored in `inp` multiplied by `2`.\n- Print the value stored in `inp` modulus `3`.\n",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you print values?"
+  },
+  "-LIIYPUAuVbTHQbf97IA" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "relationalOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "greet1 = \"hello\"                     # set variable to string literal\ngreet2 = \"Hello\"                     # set variable to string literal\ndiff_greet = greet1 != greet2        # set variable to result of relational operation (boolean)",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Placeholder" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "postCondition" : "print(greet1)\nprint(greet2)\nprint(diff_greet)",
+      "prompt" : "Write code that does the following:\n- Declare a variable `greet1` and set it to `\"hello\"`.\n- Declare a variable `greet2` and set it to `\"Hello\"`.\n- Declare a variable `diff_greet` and set it to the result of whether `greet1` and `greet2` are NOT equal.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Are two strings equal?"
+  },
+  "-LIItTeMr_aqRg9e-1Bj" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "relationalOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Result" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "1.2 < 5",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Not quite! How would you interpret this statement in Math?",
+          "True" : "Correct! You would interpret this statement just as you would in Math."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "x = 5\ny = 4\n(x + x) <= y and x <= (y+y)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Correct! The computer calculates arithmetic operation (addition) first, so the resulting comparison is 10 <= 4.",
+          "True" : "Not quite! The computer calculates arithmetic operation (addition) first. What is the resulting comparison?"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "\"HELLO\" == \"hello\"",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Correct! Strings are case-sensitive. Hence, \"HELLO\" does not equal \"hello\".",
+          "True" : "Not quite! Recall that strings are case-sensitive"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "a = 1\nb = 1\na != b",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Correct!",
+          "True" : "Not quite! Notice that a and b are both equal to 1. If so, are they unequal/not equal?"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "3 >= (5 % 2)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Not quite! Recall that the computer calculates the arithmetic operation (modulus) first",
+          "True" : "Correct! The computer calculates the arithmetic operation (modulus) first, so the resulting comparison is 3 >= 1"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "hello = \"Hello\"\nhello == \"Hello\"",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Not quite! The question is asking if \"Hello\" is equal to \"Hello\"?",
+          "True" : "Correct! This code is tricky because the first line sets a variable named hello to the string value \"Hello\". The second line checks for equality to determine if the value stored in the variable is equal to \"Hello\" (with an uppercase \"H\"). They are both \"Hello\", so the result is True."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine if the result of the following lines of code are True or False",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you read relational operators?"
+  },
+  "-LIMzZDOL9IHPoy8Usfz" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "printStatements" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Output" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "print(\"hello world\")",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "'hello world'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! The print command prints out the parameter (what's in the parenthesis)",
+          "incorrect" : [ "Not quite! What is the input to this print command?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "print(5 - 2.0)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "3.0",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Operations in the input execute before printing.",
+          "incorrect" : [ "Not quite! Recall that operations in the input execute before printing", "Remember, operations involving floats result in floats." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "val = 7\nprint(val)\nprint(val + 1)\nval = 3\nprint(val)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "7\n8\n3",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Each print statement goes on its own line",
+          "incorrect" : [ "Remember that the output from each print statement goes on its own line" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Each print statement prints on a new line",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "print(\"3+5\")",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "'3+5'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Strings don't execute.",
+          "incorrect" : [ "Not quite! Notice that the parameter to the print statement is a string", "Strings don't execute." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Strings are strings. They don't have any operations execute in them!",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "should_pay = False\nprint(should_pay)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! The print statement outputs the value of the boolean",
+          "incorrect" : [ "Not quite! Think about what is stored in the variable." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Print statements print the value they store. And Booleans are NOT strings!",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine the output of the print statements below",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "What is printed?"
+  },
+  "-LIN493kRDPdiQKI5uQ6" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.18
+    },
+    "code" : "",
+    "concepts" : [ "conditionals" ],
+    "prompt" : "Read through the following blocks of code. Check the boxes for each line of code the computer would run.",
+    "questions" : [ {
+      "answer" : [ "Line 6" ],
+      "choices" : [ "Line 4", "Line 6", "Line 8" ],
+      "code" : "friend = \"juan\"\ntemp = 30\nif (temp <= 40 and friend == \"sue\") :\n    print(\"Bring 2 jackets\")\nelif (temp <= 35) :\n    print(\"Bring 1 jacket\")\nelse :\n    print(\"You don't need a jacket!\")",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Read and evaluate each line of the code. Ask whether if you would actually reach a line." ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "Bring 1 jacket",
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "correct" : "Correct!",
+          "incorrect" : [ "Not quite. Make sure there aren't any typos in your response." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "What is the output of this code?",
+        "type" : "shortResponse"
+      } ],
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "checkboxQuestion"
+    } ],
+    "shortPrompt" : "Which lines of code are run?"
+  },
+  "-LIwlgojL3HSCfAWQH2y" : {
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "Test for highlight code question",
+    "questions" : [ {
+      "answer" : "print(\"Bring an umbrella!\")",
+      "code" : "raining = True\nif raining:\n  print(\"Bring an umbrella!\")\nelse:\n  print(\"You don't need an umbrella\")\n",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : "You got it!",
+        "incorrect" : [ "Not quite." ]
+      },
+      "followupPrompt" : "",
+      "hint" : "this is a test",
+      "prompt" : "Highlight the line that executes",
+      "type" : "highlightCode"
+    } ],
+    "shortPrompt" : "Highlight test"
+  },
+  "-LROkI6mvye31BhxQggH" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_CI_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "4, 3, 6",
+      "choices" : [ "`4, 3, 6`", "`3, 2, 6`", "`4, 2, 5`", "`3, 3, 5`" ],
+      "code" : "",
+      "difficulty" : "0",
+      "feedback" : {
+        "3, 2, 6" : "",
+        "3, 3, 5" : "",
+        "4, 2, 5" : "",
+        "4, 3, 6" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "Trace the code line by line!",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "What are the values of `i`, `j`, and `k` after the loop finishes?\n\n```\nint i;\nint j=0;\nint k=0;\nfor(i = 0; i < 4; i++){\n    if(i < 2){\n        j = i + 2;\n        if(j == 2){\n            k = 5;\n        }\n    }\n    k = 6;\n}\n```",
+      "type" : "multipleChoice"
+    } ]
+  },
+  "-LS1uwENLD24a2hw64CD" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_OI_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "11",
+      "code" : "ANSWER: ",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint should be shown",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Which line in the following code determines the final value of `k` after the loop finishes? \n ``` \n\n\nint i;\nint j=0;\nint k=0;\nfor(i = 0; i < 4; i++){\n    if(i < 2){\n        j = i + 2;\n        if(j == 2){\n          k = 5;\n        }\n    }\n  k = 6;\n}\n```",
+      "type" : "writeCode"
+    } ]
+  },
+  "-LS1wuEd4T7IRF3fA3KX" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_WS_OI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "TODO",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint should be shown",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the class:\n\n```\npublic class Employee {\n    int role;\n    float salary;\n}\n```\n\nCreate a method with the following method header:\n\n`public int verifyEmployee(Employee e1, Employee e2);`\n\nThe method has to obey the following rules:\n\n* R1: return -1 if e1’s role is less than e2’s and e1’s salary is also less than e2’s.\n* R2: return 0 if e1 and e2 have the same roles and salaries\n* R3: return 1 if e1’s role is greater than e2’s and e1’s salary is also greater than e2’s.\n* R4: return 2 if none of the previous rules could be verified\n\nWrite your code below.",
+      "type" : "writeCode"
+    } ]
+  },
+  "-LSGifsYe8mKzy0JuB-j" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_OI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "varies",
+      "code" : "Which line(s) determine the number of times “hey“ is printed per line?\nAnswer: \n\nWhich line(s) determine the number of lines printed?\nAnswer: ",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the following code segment:\n```\nString word = \"hey\";\nint n = 4;\nfor (int j = 0; j < n; j++) {\n    for (int k = j; k < n; k++) {\n        System.out.print(word);\n    }\n    System.out.println(\".\");\n}\n```\nWhich has the following output:\n\nheyheyheyhey.\n\nheyheyhey.\n\nheyhey.\n\nhey.",
+      "type" : "writeCode"
+    } ]
+  },
+  "-LSGl2vLmS2AiCJZWYkE" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_OE_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "varies",
+      "code" : "What does line 3 of the code do?\nAnswer:\n\nWhat does line 4 of the code do?\nAnswer:\n\n",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the following code segment:\n```\nString word = \"hey\";\nint n = 4;\nfor (int j = 0; j < n; j++) {\n    for (int k = j; k < n; k++) {\n        System.out.print(word);\n    }\n    System.out.println(\".\");\n}\n```\nWhich has the following output:\n\nheyheyheyhey.\n\nheyheyhey.\n\nheyhey.\n\nhey.",
+      "type" : "writeCode"
+    } ]
+  },
+  "RS_OE_2" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_OE_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "11",
+      "code" : "ANSWER: \nEXPLANATION: ",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint should be shown",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Which line in the following code determines the final value of `k` after the loop finishes? Explain your answer in the space below.\n\n```\nint i;\nint j=0;\nint k=0;\nfor(i = 0; i < 4; i++){\n    if(i < 2){\n        j = i + 2;\n        if(j == 2){\n            k = 5;\n        }\n    }\n    k = 6;\n}\n```",
+      "type" : "writeCode"
+    } ]
+  },
+  "RT_CI_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RT_CI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "if (d1.year > 2000)",
+      "choices" : [ "```if (d1 > 2000)```", "`if (d1.year() > 2000)` ", "`if (Date d1.year > 2000)`", "`if (d1.year > 2000)`" ],
+      "code" : "",
+      "difficulty" : "0",
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the following code:\n\n```\npublic class Date {\n    public int day;\n    public int month;\n    public int year;\n\n    // more code follows\n};\n\nDate d1 = new Date();\n```\n\n**Which is the correct `if` statement that checks if the year stored in variable `d1` is greater than 2000?**",
+      "type" : "multipleChoice"
+    } ]
+  },
+  "RT_CI_2" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RT_CI_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "A",
+      "choices" : [ "A", "B", "C", "D" ],
+      "code" : "public static String decoder(String s) {\n    int x = 0;\n    int y = 0;\n    String temp = \"\";\n    String secret = \"\";\n\n    while (/* missing code 1 */) {\n        if(s.charAt(x) != 'x') {\n            temp = temp + s.charAt(x);\n            y = y + 1;\n        }\n        x = x + 1;\n    }\n    x = 0\n    y = 1\n    while (y <= temp.length()){\n        if(/* missing code 2 */){\n            secret = secret + temp.charAt(y-1);\n        }\n        x = x + 1;\n        /* missing code 3 */\n    }\n\n    return secret;\n}",
+      "difficulty" : "0",
+      "followupPrompt" : "",
+      "hint" : "nahhh",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Write code to fill in `/*missing code 1*/`, `/*missing code 2*/`, and `/*missing code 3*/` to complete the decoder function so that it returns the string message decoded according to the following rules:\n* First, remove every ‘x’\n* Next, remove every third letter\n\nFor example, the function call decoder(`\"HxaeppqxxyHxaolixidrxayvs\"`) would return `\"HappyHolidays\"`\n\n\n | option | missing code 1\t | missing code 2\t | missing code 3\t |\n|---|--- | ---| --- |\n|A| `x < s.length()` | `y % 3 != 0` | `y = y + 1` |\n|B| `x <= s.length()` | `y % 3 == 0` | `y = y + 1` |\n|C| `x < s.length()`| `y % 3 != 0` | `y = y + 3` |\n|D| `x <= s.length()`| `y % 3 == 0` | `y = y + 3` |",
+      "type" : "multipleChoice"
+    } ]
+  },
+  "RT_OE_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RT_OE_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "no",
+      "code" : "ANSWER: \n\nEXPLANATION: ",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the following code:\n\n```\npublic class Date {\n    public int day;\n    public int month;\n    public int year;\n\n    // more code follows\n};\n\nDate d1 = new Date();\n```\n\nWould the statement below be true if the year stored in the variable dl is greater than 2000? Why or why not?\n\n`if (dl.year > 2000)`",
+      "type" : "writeCode"
+    } ]
+  },
+  "RT_OI_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RT_OI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "no",
+      "code" : "ANSWER: ",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the following code:\n\n```\npublic class Date {\n    public int day;\n    public int month;\n    public int year;\n\n    // more code follows\n};\n\nDate dl = new Date();\n```\n\n**Would the statement below be true if the year stored in the variable `dl` is greater than 2000?**\n\n`if (Date dl.year > 2000)`",
+      "type" : "writeCode"
+    } ]
+  },
+  "WS_CI_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "WS_CI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "code",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the class:\n\n```\npublic class Employee {\n    int role;\n    float salary;\n}\n```\nWrite code to:\n\n1. Create a public method `verifyEmployee()` that takes parameters `Employee e1` and `Employee e2` and returns an integer.\n2. Write a statement that returns `-1` if `e1`’s role is less than `e2`’s and `e1`’s salary is also less than `e2`’s.\n3. Write another statement that returns `0` if `e1` and `e2` have the same roles and salaries.\n4. Write another statement that returns a `1` if `e1`’s role is greater than `e2`’s and `e1`’s salary is also greater than `e2`’s.\n5. Write a final line that returns a `2` if none of the previous rules could be verified.\n\nWrite your code below.",
+      "type" : "writeCode"
+    } ]
+  },
+  "WS_CI_2" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_WS_CI_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "written code",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "The following method returns 0 if `x` is not divisible by `n` and 1 if `x` is divisible by `n`.\n\n```\npublic static int xIsDivisibleByN(int x, int n) {\n    if (x % n == 0) {\n        return 1;\n    } else {\n        return 0;\n    }\n}\n```\n\nCreate a program that asks the user to input a number and uses the method `xIsDivisibleByN` to determine if it is **prime**, that is, if it is divisible by no number except itself and 1. Assume that the user will input an integer greater than or equal to 2.\n\nFollow the steps below to create your code:\n\n1. Write a statement to import `java.util.Scanner`.\n2. Declare a public class `Main`.\nWithin the `Main` class, do the following:\n3. Declare a public static method `main` which does not return anything and takes as a parameter an array of Strings named \"args.\"\nWithin the main method, do the following:\n4. Declare an integer variable named `a`.\n5. Define a new Scanner object `sc` which takes System.in as a parameter.\n6. Set `a` to the returned value of Scanner `sc`'s nextInt() method.\n7. Declare an integer `isPrime` and set it to 1.\n8. Declare an integer variable `root` and set it to the square root of a casted as an integer.\n9. Create a for loop that uses integer variable `n` to go from 2 to `root` (inclusive), incrementally increasing by 1. \n10. Inside the for loop, if the value returned by passing `a` and `n` into the `xIsDivisibleByN` method is 1, set `isPrime` to 0 and break out of the for loop.\n11. If `isPrime` is equal to 1, print the formatted string `Number <num> is prime`  (where `<num>` the value stored in `a`)\n12. If the if statement is not true, print the formatted string `Number <num> is NOT prime`  (where `<num>` the value stored in `a`)",
+      "type" : "writeCode"
+    } ]
+  },
+  "WS_OE_2" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_WS_OE_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "TODO",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "The following method returns 0 if x is not divisible by n and 1 if x is divisible by n.\n\n```\npublic static int xIsDivisibleByN(int x, int n) {\n    if (x % n == 0) {\n        return 1;\n    } else {\n        return 0;\n    }\n}\n```\n\nCreate a program that asks the user to input a number and uses the method `xIsDivisibleByN` to determine if it is **prime**, that is, if it is divisible by no number except itself and 1. Assume that the user will input an integer greater than or equal to 2.\n\nWrite your code below. For each line of code, include a brief comment explaining the purpose or function of the line.",
+      "type" : "writeCode"
+    } ]
+  },
+  "WS_OI_2" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_WS_OI_2",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "TODO",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "The following method returns 0 if `x` is not divisible by `n` and 1 if `x` is divisible by `n`.\n\n```\npublic static int xIsDivisibleByN(int x, int n) {\n    if (x % n == 0) {\n        return 1;\n    } else {\n        return 0;\n    }\n}\n```\n\nCreate a program that asks the user to input a number and uses the method `xIsDivisibleByN` to determine if it is **prime**, that is, if it is divisible by no number except itself and 1. Assume that the user will input an integer greater than or equal to 2.\n\nWrite your code below:",
+      "type" : "writeCode"
+    } ]
+  },
+  "_RS_CI_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_RS_CI_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "A",
+      "choices" : [ "A", "B", "C", "D", "E" ],
+      "code" : "String word = \"hey\";\nint n = 4;\nfor (/* missing code 1 */) {\n    for (/* missing code 2 */) {\n        System.out.print(word);\n    }\n    System.out.println(\".\");\n}",
+      "difficulty" : "0",
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Write code to fill in /* missing code 1 */ and /* missing code 2 */, to complete the code above such that the printed output is: \n\nheyheyheyhey.\n\nheyheyhey.\n\nheyhey.\n\nhey.\n\n| option | missing code 1 | missing code 2 |\n|---|--- | --- |\n| A | `int j = 0; j < n; j++` |\t`int k = j; k < n; k++` |\n| B | `int j = n; j > 1; j--` | \t`int k = 1; k < (j + 1); k--` |\n| C | `int j = 0; j < (n + 1); j++` | `int k = (n – j); k > 0; k --` |\n| D | `int j = n; j > 0; j--` |\t`int k = 0; k < (j + 1); k++` |\n| E | `int j = 0; j < n; j++` | `int k = 0; k < n; k++` |",
+      "type" : "multipleChoice"
+    } ]
+  },
+  "_RT_OE_2" : {
+    "code" : "",
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "an explanation",
+      "code" : "Describe what the code on lines 16-18 do:\n\n",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "```\npublic static String decoder(String s) {\n    int x = 0;\n    int y = 0;\n    String temp = \"\";\n    String secret = \"\";\n\n    while (x < s.length()) {\n        if(s.charAt(x) != 'x') {\n            temp = temp + s.charAt(x);\n            y = y + 1;\n        }\n        x = x + 1;\n    }\n    x = 0\n    y = 1\n    while (y <= temp.length()){\n        if(y % 3 != 0){\n            secret = secret + temp.charAt(y-1);\n        }\n        x = x + 1;\n        y = y + 1;\n    }\n\n    return secret;\n}\n```\n\nThe above decoder function returns a string message decoded according to the following rules:\n\n* First, remove every 'x'\n* Next, remove every third letter\nFor example, the function call `decoder(\"HxaeppqxxyHxaolixidrxayvs\")` would return 'HappyHolidays'\n",
+      "type" : "writeCode"
+    } ]
+  },
+  "_RT_OI_2" : {
+    "code" : "",
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "a number",
+      "code" : "Which line(s) determines whether a letter is an \"x\"?",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "```\npublic static String decoder(String s) {\n    int x = 0;\n    int y = 0;\n    String temp = \"\";\n    String secret = \"\";\n\n    while (x < s.length()) {\n        if(s.charAt(x) != 'x') {\n            temp = temp + s.charAt(x);\n            y = y + 1;\n        }\n        x = x + 1;\n    }\n    x = 0\n    y = 1\n    while (y <= temp.length()){\n        if(y % 3 != 0){\n            secret = secret + temp.charAt(y-1);\n        }\n        x = x + 1;\n        y = y + 1;\n    }\n\n    return secret;\n}\n```\n\nThe above decoder function returns a string message decoded according to the following rules:\n\n* First, remove every 'x'\n* Next, remove every third letter\n\nFor example, the function call `decoder(\"HxaeppqxxyHxaolixidrxayvs\")` would return 'HappyHolidays'\n",
+      "type" : "writeCode"
+    } ]
+  },
+  "_WS_OE_1" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "_WS_OE_1",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "TODO",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint should be shown",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "Consider the class:\n\n```\npublic class Employee {\n    int role;\n    float salary;\n}\n```\n\nCreate a method with the following method header:\n\n`public int verifyEmployee(Employee e1, Employee e2);`\n\nThe method has to obey the following rules:\n\n* R1: return -1 if e1’s role is less than e2’s and e1’s salary is also less than e2’s.\n* R2: return 0 if e1 and e1 have the same roles and salaries\n* R3: return 1 if e1’s role is greater than e2’s and e1’s salary is also greater than e2’s.\n* R4: return 2 if none of the previous rules could be verified\n\n\n For each line of code you write below, **include a brief comment explaining its purpose or function.**",
+      "type" : "writeCode"
+    } ]
+  },
+  "arith-read-var" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "arithmeticOperators" ],
+    "prompt" : "For the following lines of code, determine the output type and the actual result",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Data Type", "Result" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "x = 5\nx * 2",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Integer",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Not quite. Think about what happens for operations between integers that don't result in a decimal value.",
+          "Integer" : "Correct! This operation only had integers and did not result in a decimal value, so the result was an integer."
+        },
+        "followupPrompt" : "",
+        "hint" : "Note that is is a calculation between two integers. Does the result have a decimal value?",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "10",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! This operation only had integers and did not result in a decimal value, so the result was an integer.",
+          "incorrect" : [ "Not quite. Think about what happens for operations between integers that don't result in a decimal value." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "When doing arithmetic operations with variables, replace the variable with the value stored in it.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "my_var = 3 / 2\n1 + my_var",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Float",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Correct! This is regular division, so we keep the decimal value.",
+          "Integer" : "Not quite! Note that this is regular division."
+        },
+        "followupPrompt" : "",
+        "hint" : "For regular division, any decimal value is preserved.",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "2.5",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! This is regular division, so we keep the decimal value.",
+          "incorrect" : [ "Not quite. Note that this is regular division." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "When doing arithmetic operations with variables, replace the variable with the value stored in it.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "my_value = 4\nmy_value % 3",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "Integer",
+        "choices" : [ "Integer", "Float" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "Float" : "Not quite! This calculation does not involve any floats.",
+          "Integer" : "Correct! If a variable is a number, we can use it in arithmetic operations. In this case, it results in an integer"
+        },
+        "followupPrompt" : "",
+        "hint" : "Note that is is a calculation between two integers. Does the result have a decimal value?",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "1",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Since there are no decimals involved in the calculation, this results in an integer.",
+          "incorrect" : [ "Remember, there are no decimals involved in this calculation.", "You can use variables in arithmetic operations. Try replacing, my_value with 4. What does that result?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "When doing arithmetic operations with variables, replace the variable with the value stored in it.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you do math with variables?"
+  },
+  "arith-write-simple" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "arithmeticOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "7.0",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "",
+        "incorrect" : [ "" ]
+      },
+      "hint" : "Use the modulus operator (`%`) to get the remainder from a division operation",
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "_Write code that does the following:_\n- In parenthesis, add `37` and `278` and then get the _remainder_ when dividing that result with `10` and then multiply that result with `1.4`.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you write arithmetic operators?"
+  },
+  "baseline_nl" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "baseline_nl",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "the prompt",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : true,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "**Retype the following passage in the box below.**\n\nComputer programming is the process of designing and building an executable computer program for accomplishing a specific computing task. Programming involves tasks such as analysis, generating algorithms, profiling algorithms' accuracy and resource consumption, and the implementation of algorithms in a chosen programming language (commonly referred to as coding).\n\nThe source code of a program is written in one or more programming languages. The purpose of programming is to find a sequence of instructions that will automate the performance of a task for solving a given problem.\n\nThe process of programming thus often requires expertise in several different subjects, including knowledge of the application domain, specialized algorithms, and formal logic. Related programming tasks include testing, debugging, maintaining a program's source code, implementation of build systems, and management of derived artifacts such as machine code of computer programs.\n\nThese might be considered part of the programming process, but often the term software development is used for this larger process with the term programming, implementation, or coding reserved for the actual writing of source code. Software engineering combines engineering techniques with software development practices.",
+      "type" : "writeCode"
+    } ]
+  },
+  "baseline_pl" : {
+    "code" : "",
+    "etc" : {
+      "itemName" : "baseline_pl",
+      "study" : "2019ncme"
+    },
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "ode",
+      "code" : "",
+      "difficulty" : "0",
+      "feedback" : {
+        "correct" : ""
+      },
+      "followupPrompt" : "",
+      "hint" : "no hint",
+      "isShortAnswerNcme" : false,
+      "postCondition" : "",
+      "preCondition" : "",
+      "prompt" : "**Retype the following passage in the box below.**\n\n```\npublic class BinaryConverter {\n    \n    public static void main(String[] args){\n        for(int i = -5; i < 33; i++){\n            System.out.println(i + \": \" + toBinary(i));\n            System.out.println(i);\n            //always another way\n            System.out.println(i + \": \" + Integer.toBinaryString(i));\n        }\n    }\n    \n    public static String toBinary(int base10Num){\n        boolean isNeg = base10Num < 0;\n        base10Num = Math.abs(base10Num);        \n        String result = \"\";\n        \n        while(base10Num > 1){\n            result = (base10Num % 2) + result;\n            base10Num /= 2;\n        }\n        assert base10Num == 0 || base10Num == 1 : \"value is not <= 1: \" + base10Num;\n        \n        result = base10Num + result;\n        assert all0sAnd1s(result);\n        \n        if( isNeg )\n            result = \"-\" + result;\n        return result; // returns a String with base10Num in base 2\n    }\n    \n    public static boolean all0sAnd1s(String val){\n        assert val != null : \"Failed precondition all0sAnd1s. parameter cannot be null\";\n        boolean all = true;\n        int i = 0;\n        char c;\n        \n        while(all && i < val.length()){\n            c = val.charAt(i);\n            all = c == '0' || c == '1';\n            i++;\n        }\n        return all; // true if val is 1 or 0\n    }\n}\n```",
+      "type" : "writeCode"
+    } ]
+  },
+  "conditional-read-2ifs" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "conditionals" ],
+    "prompt" : "Read through the following code. Check the boxes if the computer would run that line of code.",
+    "questions" : [ {
+      "answer" : [ "Line 7", "Line 14" ],
+      "choices" : [ null, "Line 7", "Line 9", "Line 12", "Line 14" ],
+      "code" : "num_people = 11\nseats_per_table = 4\nextra_chairs = 0\nmax_chairs = 2\n\nif (num_people % seats_per_table > 0):\n    extra_chairs = num_people % seats_per_table\nelse: \n   print(\"No extra chairs needed.\")\n\nif (extra_chairs > 0 and extra_chairs <= max_chairs):\n    print(\"We'll need extra chairs\")\nelse:\n    print(\"We don't have enough chairs\")",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "\"Correct! Remember: In if/else conditions, up to 1 indented \"chunk\" of code will execute.\"",
+        "incorrect" : [ "Not quite" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "We don't have enough chairs.",
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "correct" : "Correct",
+          "incorrect" : [ "Not quite." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "What is the output of this code?",
+        "type" : "shortResponse"
+      } ],
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "checkboxQuestion"
+    } ],
+    "shortPrompt" : "Can you read multiple if/else statements?"
+  },
+  "conditional-read-elif" : {
+    "bktParams" : {
+      "guess" : 0.2,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "conditionals" ],
+    "prompt" : "Read through the following blocks of code. Check the boxes for each line of code the computer would run.",
+    "questions" : [ {
+      "answer" : [ "Line 5" ],
+      "choices" : [ "Line 3", "Line 5", "Line 7" ],
+      "code" : "gpa = 2.4\nif (gpa < 2.0) :\n    print(\"You should get some help from your teacher.\")\nelif (gpa < 2.5):\n    print(\"Consider getting help from your teacher\")\nelse :\n    print(\"You're on track!\")",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Read and evaluate each line of the code. Ask whether if you would actually reach that line." ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "Bring 1 jacket",
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "correct" : "Correct!",
+          "incorrect" : [ "Not quite. Make sure there aren't any typos in your response." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "What is the output of this code?",
+        "type" : "shortResponse"
+      } ],
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "checkboxQuestion"
+    } ],
+    "shortPrompt" : "Can you read an if/elif/else?"
+  },
+  "digit-read-02" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Read the code below and determine if digit processing is done correctly. If it is not, identify the error from the multiple choice options.",
+    "questions" : [ {
+      "answer" : "The starting value is not updated properly",
+      "choices" : [ "The starting value is not an integer", "Digits are not properly extracted from starting value", "The starting value is not updated properly", "This code processes digits correctly" ],
+      "code" : "start = 198\nlast_digit = start % 10\nstart = start // 10\nsecond_digit = start % 10\nstart = start % 10\nfirst_digit = start % 10",
+      "difficulty" : "1",
+      "feedback" : {
+        "Digits are not properly extracted from starting value" : "Not quite! This code is correctly using the % operator to extract the last digit. Is it updating the starting value correctly?",
+        "The starting value is not an integer" : "Not quite! 198 is an integer.",
+        "The starting value is not updated properly" : "Correct! The operation on line 5 is incorrect. It should be start = start / 10",
+        "This code processes digits correctly" : "Not quite! Is the code updating the starting value correctly? "
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Now what's the error?"
+  },
+  "digit-read-03" : {
+    "bktParams" : {
+      "guess" : 0.2,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Read the code below and determine if digit processing is done correctly. If it is not, identify the error from the multiple choice options.",
+    "questions" : [ {
+      "answer" : "Digits are not properly extracted from starting value",
+      "choices" : [ "The staring value is not an integer", "Digits are not properly extracted from starting value", "The starting value is not updated properly", "This code processes digits correctly" ],
+      "code" : "current = 510\nlast = current % 10\ncurrent = current // 10\nmiddle = current\ncurrent = current // 10\nfirst = current % 10",
+      "difficulty" : "1",
+      "feedback" : {
+        "Digits are not properly extracted from starting value" : "Correct! The `middle` variable is actually storing the first and middle digit\"",
+        "The staring value is not an integer" : "Not quite! 510 is an integer",
+        "The starting value is not updated properly" : "Not quite! The starting value is being updated correctly with `/ 10`.",
+        "This code processes digits correctly" : "Not quite! Pay close attention to lines 4 - 6"
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Is there another error?"
+  },
+  "digit-write-simple" : {
+    "bktParams" : {
+      "guess" : 0.02,
+      "slip" : 0.18
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Given `input`, a 3 digit integer, write code that prints `'yes'` if the second digit is greater than the first digit, `'no'` if not.",
+    "questions" : [ {
+      "answer" : "last_digit = input % 10 # store last digit\ninput = input // 10 # remove last digit\nsecond_digit = input % 10 # store second digit\ninput = input // 10       # remove rightmost/second digit\nfirst_digit = input % 10      # get first digit\n\nif(second_digit > first_digit):\n  print('yes')\nelse:\n  print('no')",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Good job! There are many ways of solving this problem. We provided one possible solution here.",
+        "incorrect" : [ "Not quite!" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "Remember to use variables store digits as you extract them.",
+      "preCondition" : "input = 321",
+      "prompt" : "",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you sum the digits?"
+  },
+  "findMinMax_read_00" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "findMaxMin" ],
+    "prompt" : "For each chunk of code, read the code and fill in the variable table to identify values for variables a, b, and c which would result in the code incorrectly finding the minimum value. Then, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "The value being printed does not match the value being checked in the conditional",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b and a < c):\n    print(a)\nelif (c < b):\n    print(b)\nelse:\n    print(c)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "The conditionals correctly eliminate values that are not the minimum.",
+        "All values are not eliminated" : "The conditionals correctly eliminate all values.",
+        "The value being printed does not match the value being checked in the conditional" : "On line 3, the values of b and c are compared. However, on the following lines, the larger of the two values are being printed instead of the smaller. This would cause the incorrect value to be printed whenever a is not the minimum."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "What's wrong with this code?"
+  },
+  "findMinMax_read_01" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "findMaxMin" ],
+    "prompt" : "For each chunk of code, read the code and fill in the variable table to identify values for variables a, b, and c which would result in the code incorrectly finding the minimum value. Then, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "A value is not eliminated correctly",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b):\n    print(a)\nelif (a < c):\n    print(a)\nelif (b < c):\n    print(b)\nelse:\n    print(c)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "On line 2, the value of a is printed when the value of c has not yet been eliminated. On line 4, the value of a is printed when it is less than c but also greater than b, meaning a is not the minimum.",
+        "All values are not eliminated" : "This code allows for the elimination of each value as not the minimum.",
+        "The value being printed does not match the value being checked in the conditional" : "After every conditional, the smaller of the two compared value is printed."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Identify the error within this code."
+  },
+  "findMinMax_read_02" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "findMaxMin" ],
+    "prompt" : "For each chunk of code, read the code and fill in the variable table to identify values for variables a, b, and c which would result in the code incorrectly finding the minimum value. Then, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "All values are not eliminated",
+      "choices" : [ "A value is not eliminated correctly", "The value being printed does not match the value being checked in the conditional", "All values are not eliminated" ],
+      "code" : "if (a < b) and a < c):\n    print(a)\nelif (b < c):\n    print(b)",
+      "difficulty" : "2",
+      "feedback" : {
+        "A value is not eliminated correctly" : "The conditionals correctly eliminate values that are not the minimum.",
+        "All values are not eliminated" : "There is no path to print the value of c, should it be the minimum.",
+        "The value being printed does not match the value being checked in the conditional" : "After every conditional, the smaller of the two compared value is printed."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Do you know what goes wrong in this code?"
+  },
+  "floatEquality_read_00" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Write the final output in the \"output\" box, or write \"error\" if a certain value cannot be determined. Then, determine if float equality is correctly checked. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : {
+        "a" : 1.21,
+        "b" : "'1.211'",
+        "diff" : "error",
+        "e" : 0.001
+      },
+      "code" : "a = 1.21\nb = \"1.211\"\ne = 0.001\ndiff = abs(a - b)\nprint(d < e)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct feedback",
+        "incorrect" : [ "Incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The values to compare are not numbers (integer or float)",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback placeholder c",
+          "The threshold value is defined but is not a small positive number" : "feedback placeholder b",
+          "The values to compare are not numbers (integer or float)" : "feedback placeholder a",
+          "This code checks float equality correctly" : "feedback placeholder d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    } ],
+    "shortPrompt" : "What's the error? -1"
+  },
+  "floatEquality_read_01" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Write the final output in the \"output\" box, or write \"error\" if a certain value cannot be determined. Then, determine if float equality is correctly checked. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : {
+        "OUTPUT" : "True",
+        "x" : 2,
+        "y" : 2.004,
+        "z" : -0.004
+      },
+      "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+      "code" : "x = 2\ny = 2.004\nz = x - y\nprint(z < 0.001)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The absolute difference is not compared to be less than a threshold",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback c",
+          "The threshold value is defined but is not a small positive number" : "feedback b",
+          "The values to compare are not numbers (integer or float)" : "feedback a",
+          "This code checks float equality correctly" : "feedback d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    } ],
+    "shortPrompt" : "What's the error? -2"
+  },
+  "floatEquality_read_02" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "floatEquality" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Write the final output in the \"output\" box, or write \"error\" if a certain value cannot be determined. Then, determine if float equality is correctly checked. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : {
+        "OUTPUT" : "False",
+        "a" : 1.02,
+        "b" : 1.01,
+        "d" : 0.01,
+        "e" : -0.05
+      },
+      "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+      "code" : "a = 1.02\nb = 1.01\ne = -0.05\nd = abs(a - b)\nprint(d < e)",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "The threshold value is defined but is not a small positive number",
+        "choices" : [ "The values to compare are not numbers (integer or float)", "The threshold value is defined but is not a small positive number", "The absolute difference is not compared to be less than a threshold", "This code checks float equality correctly" ],
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "The absolute difference is not compared to be less than a threshold" : "feedback c",
+          "The threshold value is defined but is not a small positive number" : "feedback b",
+          "The values to compare are not numbers (integer or float)" : "feedback a",
+          "This code checks float equality correctly" : "feedback d"
+        },
+        "followupPrompt" : "",
+        "hint" : "None",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "memoryTable"
+    } ],
+    "shortPrompt" : "What's the error? -3"
+  },
+  "read-digit-div" : {
+    "bktParams" : {
+      "guess" : 0.2,
+      "slip" : 0.11
+    },
+    "code" : "",
+    "concepts" : [ "digitProcessing" ],
+    "prompt" : "Read the code below and determine if digit processing is done correctly. If it is not, identify the error from the multiple choice options.",
+    "questions" : [ {
+      "answer" : "The starting value is not updated properly",
+      "choices" : [ "The starting value is not an integer", "Digits are not properly extracted from starting value", "The starting value is not updated properly", "This code processes digits correctly" ],
+      "code" : "inp = 31\nlast_digit = inp % 10\ninp = inp / 10\nfirst_digit = inp % 10",
+      "difficulty" : "1",
+      "followupPrompt" : "",
+      "hint" : "Remember, there are two types of division operators in Python. Which one do we need to use for digit processing?",
+      "prompt" : "",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Is there really an error?"
+  },
+  "read-print-1" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "printStatements" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Output" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "print(123)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : 123,
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! The print command prints out the parameter (what's in the parenthesis)",
+          "incorrect" : [ "Not quite! What is the input to this print command?" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "print('123')",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "'123'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Operations in the input execute before printing.",
+          "incorrect" : [ "Not quite! Recall that operations in the input execute before printing", "Remember, operations involving floats result in floats." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Remember, strings are wrapped in 'quotation marks'",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "val = 123\nprint(val)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : 123,
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "",
+          "incorrect" : [ "" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "print statements print the value in a variable",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "val = 123\nprint('val')",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "'val'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! Strings don't execute.",
+          "incorrect" : [ "Not quite! Notice that the parameter to the print statement is a string", "Strings don't execute." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "If something is wrapped in quotation marks, it's a string!",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "print(1+1)",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "2",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "",
+          "incorrect" : [ "" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Print statements execute math operations and print the output.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine the output of the print statements below",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you read print statements?"
+  },
+  "read-relop-1" : {
+    "bktParams" : {
+      "guess" : 0.15,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "relationalOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "code" : "",
+      "colNames" : [ "Code", "Result" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "2 < 2",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Correct! You would interpret this statement just as you would in Math.",
+          "True" : "Not quite! How would you interpret this statement in Math?"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "2 <= 2",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "No quite. Remember, <= means less than OR equal to",
+          "True" : "Correct! Remember, <= means less than OR equal to."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "1 < 2 and 2 < 3",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Not quite. Are all statements true?",
+          "True" : "Correct! Both \"and\" statements are true, so the entire statement is."
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "1 < 2 and 2 < 3 and -1 > 5",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "choices" : [ "True", "False" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "False" : "Correct! The last statement (-1 < 5) is not true, so the entire statement is false.",
+          "True" : "Not quite. Are all statements true?"
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine if the result of the following lines of code are True or False",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you use the \"and\" operator?"
+  },
+  "readVarUpdate" : {
+    "bktParams" : {
+      "guess" : 0.3,
+      "slip" : 0.08
+    },
+    "code" : "num1 = 2\nnum2 = 1\ntemp = num1\nnum1 = num2\nnum2 = temp",
+    "concepts" : [ "variables" ],
+    "prompt" : "Check all boxes where that line of code updates a variable.",
+    "questions" : [ {
+      "answer" : [ "4", "5" ],
+      "choices" : [ "1", "2", "3", "4", "5" ],
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Line 4 updates the `num1` variable from 2 to 1 and line 5 updates the `num2` variable from 1 to 2.",
+        "incorrect" : [ "To update a variable means to change it from one value to another." ]
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "",
+      "type" : "checkboxQuestion"
+    } ],
+    "shortPrompt" : "Which is a variable update?"
+  },
+  "relational-write-math" : {
+    "bktParams" : {
+      "guess" : 0.01,
+      "slip" : 0.15
+    },
+    "code" : "",
+    "concepts" : [ "relationalOperators" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "val1 = 93                                     # set variable to int\nval2 = val1                                   # set variable to value of other variable (int)\none_is_less = val1 <= val2                    # set variable to result of relational operation\ncheck_both = val1 % 2 == 0 and one_is_less    # check if val1 is even and if one_is_less is True and store result",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Placeholder" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "placeholder",
+      "postCondition" : "print(val1)\nprint(val2)\nprint(one_is_less)\nprint(check_both)",
+      "prompt" : "Write code that does the following:_\n- Declare a variable `val1` and set it to `93`.\n- Declare a variable `val2` and set it to the variable `val1`.\n- Declare a variable `one_is_less` and set it to the result of whether `val1` is less than or equal to `val2`.\n- Declare a variable `check_both` and set it to the result of `val1 % 2 == 0` and `one_is_less`",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you use operators with lots of variables?"
+  },
+  "types-read-rules" : {
+    "bktParams" : {
+      "guess" : 0.2,
+      "slip" : 0.03
+    },
+    "code" : "",
+    "concepts" : [ "dataTypes" ],
+    "prompt" : "",
+    "questions" : [ {
+      "colNames" : [ "Statement", "Your response:" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Strings ALWAYS have quotation marks ('single' or \"double\") around them.",
+        "type" : ""
+      }, {
+        "answer" : "true",
+        "choices" : [ "true", "false" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "false" : "Not quite. Strings are actually always surrounded by quotes. This tells the computer that the value is a string! In Codeitz, we'll use \"double quotes\".",
+          "true" : "Correct! Strings always have quotes surrounding them (e.g. \"Hello Codeitz!\"). In Codeitz, we'll use \"double quotes\"."
+        },
+        "followupPrompt" : "",
+        "hint" : "The computer uses quotation marks to determine whether a value is a string.",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Numbers (integers, floats) may sometimes have quotation marks (\" \") surrounding them.",
+        "type" : ""
+      }, {
+        "answer" : "false",
+        "choices" : [ "true", "false" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "false" : "Correct! Integers (e.g. 12) and floats (e.g. 12.0) never have quotes around them.",
+          "true" : "Not quite. If a value has quotation marks around it, then it's a string."
+        },
+        "followupPrompt" : "",
+        "hint" : "Strings and numbers are different types.",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : 0,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Boolean values in Python must ALWAYS start with an uppercase letter (e.g. `True` or `False`).",
+        "type" : ""
+      }, {
+        "answer" : "true",
+        "choices" : [ "true", "false" ],
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "false" : "Not quite. In Python, boolean values cannot begin with a lowercase letter. That would cause an error.",
+          "true" : "Correct!. Boolean values in Python always start with an uppercase letter. Other programming languages (like Javascript) actually have boolean values start with lowercase letters, so sorry about that inconsistency."
+        },
+        "followupPrompt" : "",
+        "hint" : "The computer would not recognize the value `true`.",
+        "prompt" : "",
+        "type" : "multipleChoice"
+      } ],
+      "followupPrompt" : "",
+      "prompt" : "Determine whether the following statements are true or not.",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Do you know the rules about data types?"
+  },
+  "types-write-bool" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.05
+    },
+    "code" : "",
+    "concepts" : [ "dataTypes" ],
+    "prompt" : "",
+    "questions" : [ {
+      "colNames" : [ "Type", "Value" ],
+      "data" : [ {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Boolean",
+        "type" : ""
+      }, {
+        "answer" : "False",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! There are only two boolean values. True and False.",
+          "incorrect" : [ "Not quite. There are only two boolean values. True and False." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "There are 2 boolean values and one starts with a capital 'F'.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "Boolean",
+        "type" : ""
+      }, {
+        "answer" : "True",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct! There are only two boolean values. True and False.",
+          "incorrect" : [ "Not quite! Recall that there are only two boolean values." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Boolean start with capital letters and do NOT have quotes.",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "String",
+        "type" : ""
+      }, {
+        "answer" : "'False'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct. Strings are wrapped in quotation marks.",
+          "incorrect" : [ "Not quite! Recall that strings are wrapped in quotation marks." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Strings are always wrapped in \"quotes.\"",
+        "prompt" : "",
+        "type" : "fillBlank"
+      }, {
+        "answer" : "",
+        "code" : "",
+        "difficulty" : -1,
+        "feedback" : "",
+        "followupPrompt" : "",
+        "hint" : "",
+        "prompt" : "String",
+        "type" : ""
+      }, {
+        "answer" : "'True'",
+        "code" : "",
+        "difficulty" : "0",
+        "feedback" : {
+          "correct" : "Correct. Strings are wrapped in quotation marks.",
+          "incorrect" : [ "Not quite! Recall that strings are wrapped in quotation marks." ]
+        },
+        "followupPrompt" : "",
+        "hint" : "Strings are always wrapped in \"quotes.\"",
+        "prompt" : "",
+        "type" : "fillBlank"
+      } ],
+      "followupPrompt" : "Great job! Remember: Strings always have \"quotes\" around them. Boolean do not.",
+      "prompt" : "Write the 2 Boolean values in alphabetical order. Then write them as strings in alphabetical order.",
+      "type" : "table"
+    } ],
+    "shortPrompt" : "Can you write boolean and strings?"
+  },
+  "varswap_read_00" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Determine if variable swaps are correctly done. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "A temporary variable was created but the variable update was not done correctly",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "player1 = \"Jose\"\nplayer2 = \"Kim\"\ntemp = player1\nplayer2 = player1\nplayer1 = temp",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "On line 4, player2's value is getting overwritten but it hasn't been save. The variable whose value was saved in the temp variable should be updated first.",
+        "A temporary variable was not created" : "The temporary variable in this case is temp.",
+        "There are not 2 values to be swapped" : "The 2 values to be swapped in this case are \"Jose\" and \"Kim\".",
+        "This is a correct variable swap" : "When this code runs, both variables end up with the value \"Jose\", which is not the correct variable swap."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Are these variable swaps?"
+  },
+  "varswap_read_01" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Determine if variable swaps are correctly done. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "There are not 2 values to be swapped",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "num1 = 23\ntemp_val = num1\nnum2 = num1\nnum1 = temp",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "No variables were updated in this block of code.",
+        "A temporary variable was not created" : "The temporary variable in this case is temp_val.",
+        "There are not 2 values to be swapped" : "23 is the only value in this code block.",
+        "This is a correct variable swap" : "A variable swap has not occurred in this block of code."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Are these variable swaps?"
+  },
+  "varswap_read_02" : {
+    "bktParams" : {
+      "guess" : 0.1,
+      "slip" : 0.2
+    },
+    "code" : "",
+    "concepts" : [ "variableSwap" ],
+    "prompt" : "For each chunk of code, read the code and update the variable table. Determine if variable swaps are correctly done. If it is not, identify the error from the multiple choice options. ",
+    "questions" : [ {
+      "answer" : "A temporary variable was not created",
+      "choices" : [ "There are not 2 values to be swapped", "A temporary variable was not created", "A temporary variable was created but the variable update was not done correctly", "This is a correct variable swap" ],
+      "code" : "current_player = \"Wanda\"\nnext_player = \"Jimmy\"\ncurrent_player = next_player\nnext_player = current_player",
+      "difficulty" : "2",
+      "feedback" : {
+        "A temporary variable was created but the variable update was not done correctly" : "No temporary variable was created.",
+        "A temporary variable was not created" : "A temporary variable is necessary so that values are not lost during a variable swap.",
+        "There are not 2 values to be swapped" : "The 2 values to be swapped in this case are \"Wanda\" and \"Jimmy\".",
+        "This is a correct variable swap" : "When this code runs, both variables end up with the value \"Jimmy\", which is an incorrect variable swap."
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "prompt" : "Select one:",
+      "type" : "multipleChoice"
+    } ],
+    "shortPrompt" : "Are these variable swaps?"
+  },
+  "write-print-1" : {
+    "bktParams" : {
+      "guess" : 0.05,
+      "slip" : 0.08
+    },
+    "code" : "",
+    "concepts" : [ "printStatements" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "name = 'riley'            # set variable to string\nprint(\"hello\")  # print string literal\nprint(name)        # print value in name\nname = 'maria'   # update value in name\nprint(\"and\")  # print string literal \nprint(name)  # print new value in name",
+      "code" : "",
+      "difficulty" : "2",
+      "feedback" : {
+        "correct" : "Correct!",
+        "incorrect" : [ "Not quite. Don't forget strings have quotes around them!" ]
+      },
+      "followupPrompt" : "",
+      "followupQuestions" : [ {
+        "answer" : "'hello'\n'riley'\n'and'\n'maria'",
+        "code" : "",
+        "difficulty" : "1",
+        "feedback" : {
+          "correct" : "",
+          "incorrect" : [ "Remember that print statements and variable updates are separate things.", "Don't forget print statements print values on different lines" ]
+        },
+        "followupPrompt" : "",
+        "hint" : "placeholder",
+        "prompt" : "Write the output of this code below:",
+        "type" : "shortResponse"
+      } ],
+      "hint" : "placeholder",
+      "postCondition" : "",
+      "prompt" : "Write code that does the following:\n- Declares a variable `name` and set it to `'riley'`.\n- Print the string `\"hello\"`\n- Print the value stored in `name`.\n- Update the variable `name` to store the value `'maria'`.\n- Print `\"and\"`\n- Print the value stored in `name`.\n",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you print variables?"
+  },
+  "write-var-1" : {
+    "bktParams" : {
+      "guess" : 0.14,
+      "slip" : 0.1
+    },
+    "code" : "",
+    "concepts" : [ "variables" ],
+    "prompt" : "",
+    "questions" : [ {
+      "answer" : "course = 'python'       # (1)\ngpa = 3.8     # (2)\ncourse = 'javascript' # (3)\ngpa = (gpa+3.9)/2        # (4)",
+      "code" : "",
+      "difficulty" : "1",
+      "feedback" : {
+        "correct" : "correct feedback",
+        "incorrect" : [ "incorrect feedback" ]
+      },
+      "followupPrompt" : "",
+      "hint" : "None",
+      "postCondition" : "print(course)\nprint(gpa)",
+      "prompt" : "In the box below, write code that does the following: \n\n1. Declare a variable named `course` and set it to `'python'`. \n2. Declare a variable named `gpa` and set it to `3.8`. \n3. Update the variable `course` and set it to `'javascript'`. \n4. Update variable `gpa` to `(gpa+3.9)/2`.",
+      "type" : "writeCode"
+    } ],
+    "shortPrompt" : "Can you write variable updates?"
+  }
+}

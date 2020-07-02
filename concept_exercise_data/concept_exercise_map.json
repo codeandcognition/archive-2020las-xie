@@ -1,0 +1,142 @@
+{
+  "arithmeticOperators" : {
+    "READ" : [ "-LHtTLcZYq9HG7-5hA7o", "arith-read-var" ],
+    "WRITE" : [ "arith-write-simple", "-LIDqHrs-j4LijIs8nzg" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.25,
+        "transfer" : 0.3
+      },
+      "WRITE" : {
+        "init" : 0.25,
+        "transfer" : 0.2
+      }
+    }
+  },
+  "conditionals" : {
+    "READ" : [ "conditional-read-elif", "-LIN493kRDPdiQKI5uQ6", "conditional-read-2ifs" ],
+    "WRITE" : [ "-LI8QOtFfifzxyopSg9a" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.15,
+        "transfer" : 0.2
+      },
+      "WRITE" : {
+        "init" : 0.1,
+        "transfer" : 0.15
+      }
+    }
+  },
+  "dataTypes" : {
+    "READ" : [ "types-read-rules", "-LH_KNtUIv-mnBkZz2-k" ],
+    "WRITE" : [ "-LH_OAGDyCokBioKVd-r", "types-write-bool" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.25,
+        "transfer" : 0.3
+      },
+      "WRITE" : {
+        "init" : 0.25,
+        "transfer" : 0.25
+      }
+    }
+  },
+  "digitProcessing" : {
+    "READ" : [ "-LI7eFZrIo7PKFLDo3uO", "read-digit-div", "digit-read-02", "digit-read-03" ],
+    "WRITE" : [ "digit-write-simple", "-LI7jxOzdaWOL-pL12lc" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.05,
+        "transfer" : 0.15
+      },
+      "WRITE" : {
+        "init" : 0.25,
+        "transfer" : 0.2
+      }
+    }
+  },
+  "findMaxMin" : {
+    "READ" : [ "findMinMax_read_00", "findMinMax_read_01", "findMinMax_read_02" ],
+    "WRITE" : [ "-LI7Y47TE6sfVWM6mk0y" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.1,
+        "transfer" : 0.2
+      },
+      "WRITE" : {
+        "init" : 0.15,
+        "transfer" : 0.2
+      }
+    }
+  },
+  "floatEquality" : {
+    "READ" : [ "floatEquality_read_00", "floatEquality_read_01", "floatEquality_read_02" ],
+    "WRITE" : [ "-LI8V0KDdN1jMltnrCJK" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.15,
+        "transfer" : 0.2
+      },
+      "WRITE" : {
+        "init" : 0.1,
+        "transfer" : 0.25
+      }
+    }
+  },
+  "printStatements" : {
+    "READ" : [ "read-print-1", "-LIMzZDOL9IHPoy8Usfz" ],
+    "WRITE" : [ "-LII4_3hnAydP177H06u", "write-print-1" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.25,
+        "transfer" : 0.2
+      },
+      "WRITE" : {
+        "init" : 0.2,
+        "transfer" : 0.2
+      }
+    }
+  },
+  "relationalOperators" : {
+    "READ" : [ "read-relop-1", "-LIItTeMr_aqRg9e-1Bj" ],
+    "WRITE" : [ "-LIIYPUAuVbTHQbf97IA", "relational-write-math" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.15,
+        "transfer" : 0.25
+      },
+      "WRITE" : {
+        "init" : 0.1,
+        "transfer" : 0.2
+      }
+    }
+  },
+  "variableSwap" : {
+    "READ" : [ "varswap_read_00", "varswap_read_01", "varswap_read_02" ],
+    "WRITE" : [ "-LI7eglW5ulpzrxa8Kns" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.05,
+        "transfer" : 0.15
+      },
+      "WRITE" : {
+        "init" : 0.1,
+        "transfer" : 0.25
+      }
+    }
+  },
+  "variables" : {
+    "READ" : [ "-LHdzxfzAahw8MWKFSV_", "-LHid2oYERT-n-i-0tkL", "readVarUpdate", "-LHeQczvZEEVsszLiWHU" ],
+    "WRITE" : [ "-LHifx2aSN84XhSiLABp", "write-var-1" ],
+    "bktParams" : {
+      "READ" : {
+        "init" : 0.25,
+        "transfer" : 0.2
+      },
+      "WRITE" : {
+        "init" : 0.2,
+        "transfer" : 0.2
+      }
+    }
+  }
+}
